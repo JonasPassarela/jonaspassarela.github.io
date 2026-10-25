@@ -1,153 +1,972 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jonas Passarela — Google Play Developer Hub</title>
-  <meta name="description" content="Site oficial de desenvolvedor de Jonas Passarela. Aplicativos para Android no Google Play, políticas de privacidade e verificação de conformidade app-ads.txt.">
+  <meta name="description" content="Aplicativos Android offline-first desenvolvidos por Jonas Passarela. Conheça o Magic Deck Master (scanner OCR via WebAssembly, gestão de coleções MTG e backup Google Drive), arquitetura técnica, políticas de privacidade e conformidade app-ads.txt.">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <meta property="og:title" content="Jonas Passarela — Google Play Developer Hub">
+  <meta property="og:description" content="Aplicativos Android offline-first projetados para velocidade, privacidade local e precisão óptica. Hub oficial do Magic Deck Master na Google Play.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonaspassarela.github.io/">
+  <link rel="canonical" href="https://jonaspassarela.github.io/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230f172a%22 stroke=%22%23f59e0b%22 stroke-width=%226%22/><text x=%2250%22 y=%2266%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2246%22 fill=%22%23f59e0b%22 text-anchor=%22middle%22>JP</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
           colors: {
-            brand: {
-              gold: '#d97706',
-              dark: '#1c1917',
-              surface: '#292524',
-              border: '#44403c',
+            canvas: {
+              DEFAULT: '#0a0e17',
+              elevated: '#0f172a',
+              interactive: '#1e293b',
+            },
+            accent: {
+              DEFAULT: '#f59e0b',
+              hover: '#d97706',
+              muted: 'rgba(245, 158, 11, 0.14)',
             }
           }
         }
       }
     }
   </script>
-</head>
-<body class="bg-stone-950 text-stone-100 antialiased min-h-screen py-10 px-4 sm:px-6 lg:px-8 selection:bg-amber-500 selection:text-stone-950">
 
-  <main class="max-w-3xl mx-auto space-y-8">
-    
-    <!-- Top Header Profile -->
-    <header class="bg-stone-900/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-stone-800 shadow-2xl relative overflow-hidden">
-      <div class="absolute -top-20 -right-20 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left relative z-10">
-        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-stone-950 flex items-center justify-center font-black text-3xl shadow-xl shadow-amber-500/20 shrink-0 border border-amber-400/40">
-          JP
-        </div>
-        <div class="space-y-2 flex-1">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Google Play Verified Developer
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      background-color: #0a0e17;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: 0.01em;
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-header {
+      background: rgba(10, 14, 23, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-subtle {
+      background: rgba(30, 41, 59, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .headline-balance {
+      text-wrap: balance;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    .transition-fast {
+      transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#0a0e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Ambient Top Background Glow (Pure CSS, Zero JS Latency) -->
+  <div class="fixed inset-x-0 top-0 h-[520px] pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
+    <div class="max-w-7xl mx-auto h-full relative">
+      <div class="absolute -top-32 left-1/4 w-[480px] h-[320px] rounded-full bg-amber-500/5 blur-3xl"></div>
+      <div class="absolute top-12 right-10 w-[420px] h-[280px] rounded-full bg-sky-500/5 blur-3xl"></div>
+    </div>
+  </div>
+
+  <!-- Top Bar Contract: Sticky Header (3 Zones, <= 64px height) -->
+  <header class="sticky top-0 z-40 h-16 glass-header">
+    <div class="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-8">
+      <!-- Zone 1: Brand Wordmark -->
+      <a href="#" class="text-base sm:text-lg font-bold tracking-tight text-white whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded">
+        Jonas Passarela
+      </a>
+
+      <!-- Zone 2: Navigation Links -->
+      <nav aria-label="Navegação Principal" class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#aplicativos" class="hover:text-white hover:underline underline-offset-8 decoration-amber-400 transition-fast whitespace-nowrap shrink-0">Aplicativos</a>
+        <a href="#arquitetura" class="hover:text-white hover:underline underline-offset-8 decoration-amber-400 transition-fast whitespace-nowrap shrink-0">Arquitetura</a>
+        <a href="#sobre" class="hover:text-white hover:underline underline-offset-8 decoration-amber-400 transition-fast whitespace-nowrap shrink-0">Sobre</a>
+        <a href="#suporte" class="hover:text-white hover:underline underline-offset-8 decoration-amber-400 transition-fast whitespace-nowrap shrink-0">Suporte &amp; Legal</a>
+      </nav>
+
+      <!-- Zone 3: Primary Action -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a
+          href="mailto:jonaspassarela@gmail.com?subject=Contato%20Google%20Play%20Developer%20Hub"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-fast whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+        >
+          Contato Direto
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-20 space-y-20 sm:space-y-28">
+
+    <!-- 1. HERO SECTION: Project-Forward Split Layout -->
+    <section aria-labelledby="hero-heading" class="space-y-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        
+        <!-- Left Column: Direct Value Proposition & CTAs -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-6 py-2">
+          <div class="space-y-5">
+            <!-- Unboxed Trust Kicker -->
+            <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-amber-400 tracking-wide">
+              <span>Google Play Verified Developer</span>
+              <span class="text-slate-600" aria-hidden="true">·</span>
+              <span class="text-slate-400">Android Offline-First Engineering</span>
+            </div>
+
+            <!-- Direct Headline (First 3 words state exactly what is built) -->
+            <h1 id="hero-heading" class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight text-white leading-[1.1] headline-balance">
+              Aplicativos Android offline-first construídos para velocidade, privacidade local e precisão óptica.
+            </h1>
+
+            <!-- Technical Subheadline -->
+            <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+              Desenvolvimento independente de utilitários nativos e híbridos para Android. Processamento de visão computacional (OCR via WebAssembly) direto no dispositivo, banco de dados local sem latência de rede e controle absoluto dos seus dados sem rastreadores publicitários.
+            </p>
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
-            Jonas Passarela
-          </h1>
-          <p class="text-sm text-stone-400 max-w-xl">
-            Desenvolvimento de aplicativos móveis nativos e utilitários modernos para Android. Foco em privacidade, performance offline-first e alta usabilidade.
+
+          <!-- Primary & Secondary Action Bar -->
+          <div class="pt-2 space-y-5">
+            <div class="flex flex-wrap items-center gap-3.5">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-lg shadow-amber-500/10 transition-fast whitespace-nowrap shrink-0"
+              >
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M3.609 1.814L13.793 12 3.61 22.186c-.347-.384-.555-.91-.555-1.536V3.35c0-.626.208-1.152.554-1.536zm11.391 11.393l2.259 2.259-11.75 6.786 9.491-9.045zm0-2.414L5.509 1.748l11.75 6.786-2.259 2.259zm1.207 1.207l3.879 2.24c.731.423.731 1.111 0 1.534l-3.879 2.24-2.121-2.121 2.121-2.093z"/>
+                </svg>
+                Ver Magic Deck Master na Google Play
+              </a>
+
+              <a
+                href="https://github.com/jonaspassarela"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold glass-subtle hover:bg-slate-800/80 text-slate-100 transition-fast whitespace-nowrap shrink-0"
+              >
+                <svg class="w-4 h-4 text-slate-300 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                GitHub (@jonaspassarela)
+              </a>
+
+              <a
+                href="/privacy.html"
+                class="inline-flex items-center gap-1.5 px-3.5 py-3 rounded-xl text-xs font-mono text-slate-300 hover:text-amber-400 transition-fast whitespace-nowrap shrink-0"
+              >
+                <span>/privacy.html</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <!-- Quiet Technical Metadata Line -->
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-400">
+              <span>Package: com.jpassarela.magicdeckmaster</span>
+              <span aria-hidden="true">·</span>
+              <span>Versão Atual: v1.0.24+</span>
+              <span aria-hidden="true">·</span>
+              <a href="/app-ads.txt" class="text-slate-300 hover:text-amber-400 underline underline-offset-4">app-ads.txt verificado</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive App Architecture & OCR Inspector Card -->
+        <div class="lg:col-span-5 flex">
+          <div class="glass-panel rounded-2xl p-5 sm:p-6 w-full flex flex-col justify-between space-y-5">
+            
+            <!-- Top Bar of Interactive Preview -->
+            <div class="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
+              <div>
+                <p class="text-xs font-mono text-amber-400">INSPEÇÃO EM TEMPO REAL</p>
+                <h2 class="text-base font-bold text-white">Magic Deck Master · Engine Preview</h2>
+              </div>
+              <!-- Functional Segmented Control -->
+              <div class="flex items-center gap-1 p-1 rounded-lg bg-slate-950/90 border border-white/10" role="tablist" aria-label="Módulos do Magic Deck Master">
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  id="tab-btn-ocr"
+                  onclick="switchPreviewTab('ocr')"
+                  class="px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-amber-500 text-slate-950 transition-fast whitespace-nowrap shrink-0"
+                >
+                  OCR WASM
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  id="tab-btn-mana"
+                  onclick="switchPreviewTab('mana')"
+                  class="px-2.5 py-1 rounded-md text-xs font-mono font-medium text-slate-400 hover:text-white transition-fast whitespace-nowrap shrink-0"
+                >
+                  Curva Mana
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  id="tab-btn-sync"
+                  onclick="switchPreviewTab('sync')"
+                  class="px-2.5 py-1 rounded-md text-xs font-mono font-medium text-slate-400 hover:text-white transition-fast whitespace-nowrap shrink-0"
+                >
+                  Drive Sync
+                </button>
+              </div>
+            </div>
+
+            <!-- Panel 1: Optical Card Scanner (WASM) -->
+            <div id="preview-panel-ocr" class="space-y-4">
+              <div class="rounded-xl bg-slate-950/90 border border-white/10 p-4 space-y-3">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400">
+                  <span>CÂMERA · TESSERACT.JS WASM</span>
+                  <span id="ocr-latency-readout" class="text-emerald-400 tabular-nums">84ms · 100% Local RAM</span>
+                </div>
+
+                <!-- Simulated Optical Frame Bounding Box -->
+                <div class="relative rounded-lg bg-[#0d1526] border border-amber-500/30 p-3.5 overflow-hidden">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="space-y-1">
+                      <span class="text-[11px] font-mono text-amber-400">BOUNDING BOX #01 · TÍTULO RECONHECIDO</span>
+                      <p id="scanned-card-name" class="text-base font-bold text-white tracking-tight">Lightning Bolt</p>
+                      <p id="scanned-card-type" class="text-xs text-slate-400">Instant · Revisão Oracle Scryfall</p>
+                    </div>
+                    <span id="scanned-card-mana" class="font-mono text-xs font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded">
+                      {R} · CMC 1
+                    </span>
+                  </div>
+
+                  <div class="mt-3 pt-3 border-t border-white/10 grid grid-cols-2 gap-3 text-xs font-mono tabular-nums">
+                    <div>
+                      <span class="text-slate-400 block text-[11px]">COTAÇÃO LIGAMAGIC (BRL)</span>
+                      <span id="scanned-card-brl" class="text-sm font-semibold text-emerald-400">R$ 14,90</span>
+                    </div>
+                    <div>
+                      <span class="text-slate-400 block text-[11px]">SCRYFALL MARKET (USD)</span>
+                      <span id="scanned-card-usd" class="text-sm font-semibold text-slate-200">$ 2.45</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Interactive Sample Switcher -->
+                <div class="space-y-1.5">
+                  <span class="text-[11px] font-mono text-slate-400 block">TESTAR AMOSTRA DE RECONHECIMENTO ÓPTICO:</span>
+                  <div class="grid grid-cols-3 gap-2">
+                    <button
+                      type="button"
+                      onclick="simulateCardScan('bolt')"
+                      id="scan-sample-bolt"
+                      class="px-2.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40 transition-fast whitespace-nowrap truncate"
+                    >
+                      Lightning Bolt
+                    </button>
+                    <button
+                      type="button"
+                      onclick="simulateCardScan('solring')"
+                      id="scan-sample-solring"
+                      class="px-2.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-slate-900 text-slate-300 border border-white/10 hover:border-white/25 transition-fast whitespace-nowrap truncate"
+                    >
+                      Sol Ring
+                    </button>
+                    <button
+                      type="button"
+                      onclick="simulateCardScan('counterspell')"
+                      id="scan-sample-counterspell"
+                      class="px-2.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-slate-900 text-slate-300 border border-white/10 hover:border-white/25 transition-fast whitespace-nowrap truncate"
+                    >
+                      Counterspell
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Os quadros de vídeo da câmera são processados em memória volátil via WebAssembly e descartados imediatamente após extrair o nome da carta. Nenhuma foto ou vídeo é salvo ou enviado para servidores externos.
+              </p>
+            </div>
+
+            <!-- Panel 2: Mana Curve & Deck Analytics (Hidden by default) -->
+            <div id="preview-panel-mana" class="space-y-4 hidden">
+              <div class="rounded-xl bg-slate-950/90 border border-white/10 p-4 space-y-4">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400">
+                  <span>ANÁLISE DE CURVA DE MANA</span>
+                  <span class="text-amber-400 tabular-nums">60 Cartas · CMC Médio 2.18</span>
+                </div>
+
+                <!-- Interactive Bar Chart -->
+                <div class="grid grid-cols-6 gap-2 items-end h-28 pt-4 px-2 border-b border-white/10 font-mono text-xs tabular-nums">
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-[11px] text-slate-400">12</span>
+                    <div class="w-full bg-amber-500/80 rounded-t h-14"></div>
+                    <span class="text-[11px] text-slate-300">1</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-[11px] text-amber-300 font-bold">18</span>
+                    <div class="w-full bg-amber-400 rounded-t h-20"></div>
+                    <span class="text-[11px] text-slate-300">2</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-[11px] text-slate-400">10</span>
+                    <div class="w-full bg-amber-500/70 rounded-t h-12"></div>
+                    <span class="text-[11px] text-slate-300">3</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-[11px] text-slate-400">6</span>
+                    <div class="w-full bg-amber-500/50 rounded-t h-8"></div>
+                    <span class="text-[11px] text-slate-300">4</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-[11px] text-slate-400">3</span>
+                    <div class="w-full bg-amber-500/40 rounded-t h-5"></div>
+                    <span class="text-[11px] text-slate-300">5</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-[11px] text-slate-400">1</span>
+                    <div class="w-full bg-amber-500/30 rounded-t h-2.5"></div>
+                    <span class="text-[11px] text-slate-300">6+</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs font-mono text-slate-300">
+                  <span>Terrenos: 20 (33.3%)</span>
+                  <span> criaturas: 16 · Mágicas: 24</span>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Cálculo instantâneo de distribuição de custos, proporção de terrenos e validação de legalidade nos formatos Commander, Modern, Pioneer, Standard e Pauper.
+              </p>
+            </div>
+
+            <!-- Panel 3: Google Drive Restricted Backup (Hidden by default) -->
+            <div id="preview-panel-sync" class="space-y-4 hidden">
+              <div class="rounded-xl bg-slate-950/90 border border-white/10 p-4 space-y-3 font-mono text-xs">
+                <div class="flex items-center justify-between text-slate-400">
+                  <span>ESCOPO OAUTH 2.0 RESTRITO</span>
+                  <span class="text-emerald-400">Isolamento Ativo</span>
+                </div>
+                <div class="p-3 rounded-lg bg-[#0d1526] border border-white/10 text-amber-300 break-all">
+                  https://www.googleapis.com/auth/drive.file
+                </div>
+                <div class="space-y-1.5 text-slate-300 font-sans text-xs">
+                  <p>Arquivo gerenciado: <code class="font-mono text-slate-100">magic-deck-master-backup.json</code></p>
+                  <p class="text-slate-400">O aplicativo acessa única e exclusivamente o arquivo de backup criado por ele mesmo, sem permissão de leitura sobre pastas ou documentos pessoais do seu Google Drive.</p>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Auditado em conformidade com a Google API Services User Data Policy (Limited Use Requirements).
+              </p>
+            </div>
+
+            <!-- Footer inside interactive preview -->
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+              <span>IndexedDB + localStorage</span>
+              <a href="/magic-deck-master/index.html" class="text-amber-400 hover:underline">Documentação Técnica →</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Full-Width 4-Column Quantitative Proof Row below Hero Split -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-panel rounded-xl p-5 space-y-1">
+          <p class="text-2xl font-extrabold font-mono text-white tabular-nums">100% On-Device</p>
+          <p class="text-xs text-slate-400">Reconhecimento óptico OCR executado localmente em WebAssembly sem envio de imagens para nuvem.</p>
+        </div>
+        <div class="glass-panel rounded-xl p-5 space-y-1">
+          <p class="text-2xl font-extrabold font-mono text-white tabular-nums">0 SDKs de Tracking</p>
+          <p class="text-xs text-slate-400">Nenhum coleta de Google Advertising ID (GAID/AAID), telemetria comportamental ou venda de dados.</p>
+        </div>
+        <div class="glass-panel rounded-xl p-5 space-y-1">
+          <p class="text-2xl font-extrabold font-mono text-white tabular-nums">2 Fontes de Preço</p>
+          <p class="text-xs text-slate-400">Consulta pública somente-leitura via HTTPS para cotações em BRL (LigaMagic) e USD (Scryfall API).</p>
+        </div>
+        <div class="glass-panel rounded-xl p-5 space-y-1">
+          <p class="text-2xl font-extrabold font-mono text-amber-400 tabular-nums">v1.0.24+ Ativo</p>
+          <p class="text-xs text-slate-400">Publicado na Google Play Store com pacote assinado <code class="font-mono text-slate-300">com.jpassarela.magicdeckmaster</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SHOWCASE PRINCIPAL DE APLICATIVOS (#aplicativos) -->
+    <section id="aplicativos" aria-labelledby="apps-heading" class="scroll-mt-24 space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-5">
+        <div class="space-y-1">
+          <p class="text-xs font-mono text-amber-400">PORTFÓLIO DE PRODUÇÃO · GOOGLE PLAY STORE</p>
+          <h2 id="apps-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            Aplicativos Publicados &amp; Ecossistema Mobile
+          </h2>
+        </div>
+
+        <!-- Functional Filter Controls -->
+        <div class="flex items-center gap-1 p-1 rounded-lg bg-slate-900/90 border border-white/10 self-start sm:self-auto" role="group" aria-label="Filtrar aplicativos por status">
+          <button
+            type="button"
+            id="filter-btn-all"
+            onclick="filterApps('all')"
+            class="px-3 py-1.5 rounded-md text-xs font-medium bg-amber-500 text-slate-950 transition-fast whitespace-nowrap shrink-0"
+          >
+            Todos (2)
+          </button>
+          <button
+            type="button"
+            id="filter-btn-published"
+            onclick="filterApps('published')"
+            class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-white transition-fast whitespace-nowrap shrink-0"
+          >
+            Na Google Play (1)
+          </button>
+          <button
+            type="button"
+            id="filter-btn-roadmap"
+            onclick="filterApps('roadmap')"
+            class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-white transition-fast whitespace-nowrap shrink-0"
+          >
+            Em Desenvolvimento (1)
+          </button>
+        </div>
+      </div>
+
+      <!-- Flagship App Card: Magic Deck Master -->
+      <article data-app-category="published" class="glass-panel rounded-2xl p-6 sm:p-8 lg:p-10 space-y-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- App Overview & Engineering Highlights -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-400">
+                <span class="text-emerald-400 font-semibold">DISPONÍVEL NA GOOGLE PLAY</span>
+                <span aria-hidden="true">·</span>
+                <span>Release v1.0.24+</span>
+                <span aria-hidden="true">·</span>
+                <span>com.jpassarela.magicdeckmaster</span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Magic Deck Master
+              </h3>
+
+              <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                Gerenciador completo de coleções, inventário financeiro e construção de decks para <strong>Magic: The Gathering</strong>. Projetado com arquitetura estritamente local-first para colecionadores e jogadores competitivos que exigem leitura óptica rápida na câmera, histórico de preços no mercado brasileiro e privacidade total sem criação obrigatória de conta.
+              </p>
+            </div>
+
+            <!-- 3 Pillar Feature Breakdown -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+                <p class="text-xs font-mono text-amber-400">01. SCANNER OCR</p>
+                <h4 class="text-sm font-bold text-white">Leitura Óptica WASM</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                  Motor Tesseract.js embarcado via WebAssembly. Identifica cartas pela câmera 100% offline sem gravar fotos ou vídeos na galeria.
+                </p>
+              </div>
+
+              <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+                <p class="text-xs font-mono text-amber-400">02. MERCADO BRL &amp; USD</p>
+                <h4 class="text-sm font-bold text-white">Scryfall &amp; LigaMagic</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                  Sincronização de textos Oracle, legalidades de formatos e cotações atualizadas em Reais (R$) e Dólares ($).
+                </p>
+              </div>
+
+              <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+                <p class="text-xs font-mono text-amber-400">03. CLOUD BACKUP</p>
+                <h4 class="text-sm font-bold text-white">Google Drive Restrito</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                  Backup opcional via OAuth 2.0 com escopo mínimo <code class="font-mono text-slate-200">drive.file</code> isolado ao arquivo da sua coleção.
+                </p>
+              </div>
+            </div>
+
+            <!-- Technical Stack Line (Monospace, Unboxed) -->
+            <div class="pt-2">
+              <p class="text-xs font-mono text-slate-400 leading-relaxed">
+                <span class="text-slate-200 font-semibold">Stack &amp; APIs:</span>
+                Android WebView Sandbox · Tesseract.js (WASM) · IndexedDB &amp; localStorage · Google Drive API v3 (drive.file) · Scryfall REST API · LigaMagic Price Benchmark
+              </p>
+            </div>
+          </div>
+
+          <!-- Visual Architecture Diagram & Direct Routes Card -->
+          <div class="lg:col-span-5 glass-subtle rounded-xl p-5 sm:p-6 space-y-5">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <span class="text-xs font-mono text-slate-300 font-semibold">FLUXO DE DADOS LOCAL-FIRST</span>
+              <span class="text-xs font-mono text-emerald-400">Zero Servidores Proprietários</span>
+            </div>
+
+            <!-- SVG Architectural Flow Diagram (Guaranteed < 1ms render, Zero broken images) -->
+            <div class="rounded-lg bg-[#080c14] border border-white/10 p-4">
+              <svg class="w-full h-auto" viewBox="0 0 420 190" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de arquitetura do Magic Deck Master mostrando câmera OCR local, banco IndexedDB no aparelho e sincronização opcional com Google Drive e Scryfall">
+                <!-- Device Sandbox Box -->
+                <rect x="8" y="10" width="244" height="170" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+                <text x="20" y="29" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">HARDWARE ANDROID DO USUÁRIO</text>
+
+                <!-- Camera WASM Node -->
+                <rect x="20" y="42" width="220" height="52" rx="7" fill="#1e293b" stroke="#ffffff" stroke-opacity="0.12"/>
+                <text x="32" y="62" fill="#f8fafc" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700">Câmera → OCR WASM</text>
+                <text x="32" y="79" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="10">RAM Volátil · Sem Upload</text>
+
+                <!-- Arrow Down -->
+                <path d="M130 94V112" stroke="#f59e0b" stroke-width="1.5"/>
+                <polygon points="126,110 134,110 130,116" fill="#f59e0b"/>
+
+                <!-- IndexedDB Node -->
+                <rect x="20" y="116" width="220" height="52" rx="7" fill="#1e293b" stroke="#ffffff" stroke-opacity="0.12"/>
+                <text x="32" y="136" fill="#f8fafc" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700">IndexedDB / localStorage</text>
+                <text x="32" y="153" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="10">Coleção, Decks &amp; Tags</text>
+
+                <!-- External Read-Only APIs Node -->
+                <rect x="282" y="24" width="130" height="66" rx="8" fill="#0f172a" stroke="#ffffff" stroke-opacity="0.12"/>
+                <text x="294" y="45" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">Scryfall &amp; LigaMagic</text>
+                <text x="294" y="62" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9.5">HTTPS Read-Only</text>
+                <text x="294" y="76" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="9.5">Sem envio de PII</text>
+
+                <!-- External Google Drive Node -->
+                <rect x="282" y="106" width="130" height="66" rx="8" fill="#0f172a" stroke="#ffffff" stroke-opacity="0.12"/>
+                <text x="294" y="127" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">Google Drive API</text>
+                <text x="294" y="144" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="9.5">Escopo: drive.file</text>
+                <text x="294" y="158" fill="#94a3b8" font-family="JetBrains Mono, monospace" font-size="9.5">Backup JSON Opcional</text>
+
+                <!-- Connecting Lines -->
+                <path d="M240 68H282" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <path d="M240 142H282" stroke="#f59e0b" stroke-width="1.5"/>
+              </svg>
+            </div>
+
+            <!-- Action & Compliance Links for Magic Deck Master -->
+            <div class="space-y-2.5 pt-1">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-fast whitespace-nowrap"
+              >
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M3.609 1.814L13.793 12 3.61 22.186c-.347-.384-.555-.91-.555-1.536V3.35c0-.626.208-1.152.554-1.536zm11.391 11.393l2.259 2.259-11.75 6.786 9.491-9.045zm0-2.414L5.509 1.748l11.75 6.786-2.259 2.259zm1.207 1.207l3.879 2.24c.731.423.731 1.111 0 1.534l-3.879 2.24-2.121-2.121 2.121-2.093z"/>
+                </svg>
+                Instalar pela Google Play Store
+              </a>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <a
+                  href="/magic-deck-master/index.html"
+                  class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-white/10 transition-fast whitespace-nowrap"
+                >
+                  <span>Subpágina do App</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+                <a
+                  href="/privacy.html"
+                  class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-white/10 transition-fast whitespace-nowrap"
+                >
+                  <span>Política de Privacidade</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Secondary Roadmap / Lab Card -->
+      <article data-app-category="roadmap" class="glass-panel rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+            <span class="text-amber-400">EM ENGENHARIA</span>
+            <span aria-hidden="true">·</span>
+            <span>Utilitários Android Offline-First · Lançamentos 2026</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">
+            Novos Utilitários Nativos &amp; Ferramentas Ópticas
+          </h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Novos aplicativos Android focados em produtividade técnica, catalogação local sem latência e execução de modelos leves no próprio aparelho estão em fase de testes internos e serão publicados sob este domínio verificado.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <a
+            href="https://github.com/jonaspassarela"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-semibold glass-subtle hover:bg-slate-800 text-slate-200 transition-fast whitespace-nowrap"
+          >
+            <span>Acompanhar Repositórios no GitHub</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- 3. ARQUITETURA & GARANTIAS DE PRIVACIDADE (#arquitetura) -->
+    <section id="arquitetura" aria-labelledby="arch-heading" class="scroll-mt-24 space-y-8">
+      <div class="space-y-2 max-w-3xl">
+        <p class="text-xs font-mono text-amber-400">PADRÕES DE ENGENHARIA MOBILE</p>
+        <h2 id="arch-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          Arquitetura Local-First &amp; Auditoria de Permissões
+        </h2>
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+          Cada aplicativo publicado por Jonas Passarela segue quatro princípios de engenharia verificáveis para proteger a privacidade do usuário e garantir operação instantânea mesmo sem conexão de rede.
+        </p>
+      </div>
+
+      <!-- 4 Editorial Numbered Engineering Pillars -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-panel rounded-2xl p-6 space-y-3">
+          <p class="text-xs font-mono text-amber-400">01. Visão Computacional On-Device</p>
+          <h3 class="text-lg font-bold text-white">Processamento OCR em Memória Volátil</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            A permissão de câmera (<code class="font-mono text-xs text-slate-200">android.permission.CAMERA</code>) é acionada exclusivamente quando o usuário abre o scanner óptico. Os frames são lidos pelo motor WebAssembly local (Tesseract.js) e descartados da memória RAM no mesmo instante, sem gravação em disco.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 space-y-3">
+          <p class="text-xs font-mono text-amber-400">02. Persistência no Aparelho</p>
+          <h3 class="text-lg font-bold text-white">Zero Bancos de Dados Proprietários na Nuvem</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Inventários, listas de desejos, tags e decks residem integralmente no sandbox local do Android (<code class="font-mono text-xs text-slate-200">IndexedDB</code> e <code class="font-mono text-xs text-slate-200">localStorage</code>). O uso do aplicativo não exige cadastro de e-mail, senha ou conta de usuário.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 space-y-3">
+          <p class="text-xs font-mono text-amber-400">03. Escopo OAuth 2.0 Mínimo</p>
+          <h3 class="text-lg font-bold text-white">Isolamento Estrito no Google Drive</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Para backups em nuvem iniciados pelo usuário, utilizamos apenas o escopo restrito <code class="font-mono text-xs text-amber-300">drive.file</code>. O app só enxerga o arquivo <code class="font-mono text-xs text-slate-200">magic-deck-master-backup.json</code> criado por ele mesmo, em total conformidade com a política Limited Use da Google.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 space-y-3">
+          <p class="text-xs font-mono text-amber-400">04. Consultas Externas Anônimas</p>
+          <h3 class="text-lg font-bold text-white">Comunicação Somente-Leitura via HTTPS</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            As consultas de catálogo e preços comunicam-se diretamente com as APIs públicas da <strong>Scryfall</strong> e <strong>LigaMagic</strong> via HTTPS sem enviar identificadores pessoais, localização ou dados de hardware do dispositivo.
           </p>
         </div>
       </div>
-    </header>
+    </section>
 
-    <!-- Seção de Aplicativos -->
-    <section class="space-y-4">
-      <div class="flex items-center justify-between px-2">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-          <span>Aplicativos Oficiais</span>
+    <!-- 4. SOBRE O DESENVOLVEDOR (#sobre) — Contextualized Technical Bio AFTER Projects -->
+    <section id="sobre" aria-labelledby="about-heading" class="scroll-mt-24">
+      <div class="glass-panel rounded-2xl p-6 sm:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Developer Identity Column -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center font-extrabold text-2xl shadow-lg shadow-amber-500/15 shrink-0">
+                JP
+              </div>
+              <div>
+                <p class="text-xs font-mono text-amber-400">DESENVOLVEDOR INDEPENDENTE</p>
+                <h2 id="about-heading" class="text-2xl font-extrabold text-white tracking-tight">
+                  Jonas Passarela
+                </h2>
+                <p class="text-xs font-mono text-slate-400">Brasil · Google Play Publisher</p>
+              </div>
+            </div>
+
+            <p class="text-xs font-mono text-slate-400 leading-relaxed pt-1">
+              Especialidades: Engenharia Mobile Android · WebAssembly On-Device · Arquitetura Offline-First · Integração Google APIs &amp; OAuth 2.0
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href="https://github.com/jonaspassarela"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold glass-subtle hover:bg-slate-800 text-white transition-fast whitespace-nowrap"
+              >
+                GitHub Oficial
+              </a>
+              <a
+                href="mailto:jonaspassarela@gmail.com"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 transition-fast whitespace-nowrap"
+              >
+                jonaspassarela@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Contextualized Engineering Narrative -->
+          <div class="lg:col-span-8 space-y-4 lg:border-l lg:border-white/10 lg:pl-8 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p>
+              Desenvolvedor de software focado na construção de aplicativos móveis utilitários de alta densidade para o ecossistema Android. Minha abordagem prioriza <strong>software que respeita o hardware e a privacidade do usuário</strong>: inicialização abaixo de um segundo, operação confiável sem internet e transparência sobre cada permissão solicitada no sistema operacional.
+            </p>
+            <p>
+              No desenvolvimento do <strong>Magic Deck Master</strong>, combinei motores de reconhecimento óptico de caracteres compilados em WebAssembly (Tesseract.js) com armazenamento indexado local e sincronização restrita no Google Drive, entregando uma ferramenta completa para colecionadores sem depender de servidores intermediários ou coleta de dados comerciais.
+            </p>
+            <div class="pt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono text-slate-400">
+              <span>Compromisso de Suporte: Resposta em até 30 dias corridos</span>
+              <span aria-hidden="true">·</span>
+              <span>Conformidade: LGPD / GDPR / Google Play User Data Policy</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SUPORTE, CONFORMIDADE LEGAL & APP-ADS.TXT (#suporte) -->
+    <section id="suporte" aria-labelledby="legal-heading" class="scroll-mt-24 space-y-6">
+      <div class="space-y-1">
+        <p class="text-xs font-mono text-amber-400">VERIFICAÇÃO GOOGLE PLAY CONSOLE &amp; IAB TECH LAB</p>
+        <h2 id="legal-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          Diretório de Políticas, Rotas Oficiais &amp; Conformidade
         </h2>
-        <span class="text-xs text-stone-400">Google Play Store</span>
       </div>
 
-      <!-- Card do App: Magic Deck Master -->
-      <article class="bg-stone-900/80 rounded-2xl p-6 border border-stone-800 hover:border-amber-500/40 transition-all shadow-lg space-y-5">
-        <div class="flex flex-col sm:flex-row items-start justify-between gap-4">
-          <div class="space-y-1">
-            <div class="flex items-center gap-2 flex-wrap">
-              <h3 class="text-xl font-bold text-white">Magic Deck Master</h3>
-              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-stone-800 text-stone-400 border border-stone-700">
-                v1.0.24+
-              </span>
-            </div>
-            <p class="text-xs text-stone-400">
-              Package ID: <code class="text-amber-400 font-mono">com.jpassarela.magicdeckmaster</code>
-            </p>
-            <p class="text-sm text-stone-300 pt-2 leading-relaxed">
-              Gerenciador completo de coleções, inventário e decks para Magic: The Gathering. Inclui scanner óptico contínuo OCR via câmera, sincronização opcional com Google Drive e análise de curva de mana.
-            </p>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Canonical Legal Routes Card -->
+        <div class="lg:col-span-7 glass-panel rounded-2xl p-6 space-y-4">
+          <h3 class="text-base font-bold text-white">
+            Rotas Canônicas de Privacidade e Documentação
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Links permanentes vinculados ao Google Play Console e à tela de consentimento OAuth 2.0 do Google Cloud para auditoria pública e exercício de direitos de exclusão de dados:
+          </p>
+
+          <div class="space-y-2.5 font-mono text-xs">
+            <a
+              href="/privacy.html"
+              class="flex items-center justify-between gap-4 p-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-white/10 hover:border-amber-500/40 transition-fast group"
+            >
+              <div class="space-y-0.5">
+                <span class="text-amber-400 font-semibold group-hover:underline">/privacy.html</span>
+                <p class="font-sans text-xs text-slate-400">Política de Privacidade Principal — Magic Deck Master (Google Play Store)</p>
+              </div>
+              <span class="text-slate-400 group-hover:text-white shrink-0">Abrir →</span>
+            </a>
+
+            <a
+              href="/magic-deck-master/index.html"
+              class="flex items-center justify-between gap-4 p-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-white/10 hover:border-amber-500/40 transition-fast group"
+            >
+              <div class="space-y-0.5">
+                <span class="text-amber-400 font-semibold group-hover:underline">/magic-deck-master/index.html</span>
+                <p class="font-sans text-xs text-slate-400">Diretório Oficial do Aplicativo &amp; Termos de Uso Local-First</p>
+              </div>
+              <span class="text-slate-400 group-hover:text-white shrink-0">Abrir →</span>
+            </a>
+
+            <a
+              href="/magic-deck-master/privacy.html"
+              class="flex items-center justify-between gap-4 p-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-white/10 hover:border-amber-500/40 transition-fast group"
+            >
+              <div class="space-y-0.5">
+                <span class="text-amber-400 font-semibold group-hover:underline">/magic-deck-master/privacy.html</span>
+                <p class="font-sans text-xs text-slate-400">Espelho de Política de Privacidade Dedicada do Subdiretório</p>
+              </div>
+              <span class="text-slate-400 group-hover:text-white shrink-0">Abrir →</span>
+            </a>
           </div>
         </div>
 
-        <!-- Links e Ações do App -->
-        <div class="pt-4 border-t border-stone-800 flex flex-wrap items-center gap-3">
-          <a
-            href="/privacy.html"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-stone-800 hover:bg-stone-750 text-stone-200 border border-stone-700 hover:border-stone-600 transition"
-          >
-            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-            Política de Privacidade
-          </a>
+        <!-- IAB Tech Lab / AdMob app-ads.txt Verification Card -->
+        <div class="lg:col-span-5 glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-base font-bold text-white">Verificação <code class="font-mono text-amber-400">/app-ads.txt</code></h3>
+              <span class="text-xs font-mono text-emerald-400">IAB Tech Lab v1.0</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Este domínio raiz hospeda o arquivo canônico <code class="font-mono text-slate-200">/app-ads.txt</code> exigido pelas diretrizes do Google AdMob e IAB Tech Lab para verificação de propriedade do desenvolvedor e proteção de inventário mobile.
+            </p>
 
-          <a
-            href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition"
-          >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M3.609 1.814L13.793 12 3.61 22.186c-.347-.384-.555-.91-.555-1.536V3.35c0-.626.208-1.152.554-1.536zm11.391 11.393l2.259 2.259-11.75 6.786 9.491-9.045zm0-2.414L5.509 1.748l11.75 6.786-2.259 2.259zm1.207 1.207l3.879 2.24c.731.423.731 1.111 0 1.534l-3.879 2.24-2.121-2.121 2.121-2.093z"/>
-            </svg>
-            Ver no Google Play
-          </a>
+            <!-- Actual app-ads.txt record with 1-click copy -->
+            <div class="rounded-xl bg-slate-950 border border-white/10 p-3.5 space-y-2">
+              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <span>REGISTRO PUBLICADO EM /app-ads.txt</span>
+                <button
+                  type="button"
+                  id="copy-appads-btn"
+                  onclick="copyAppAdsRecord()"
+                  class="text-amber-400 hover:text-amber-300 underline font-semibold transition-fast whitespace-nowrap"
+                >
+                  Copiar linha
+                </button>
+              </div>
+              <pre class="text-xs font-mono text-slate-200 overflow-x-auto select-all"><code>google.com, pub-1926145067521120, DIRECT, f08c47fec0942fa0</code></pre>
+            </div>
+          </div>
 
-          <a
-            href="/app-ads.txt"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono text-stone-400 hover:text-stone-200 bg-stone-900 hover:bg-stone-850 border border-stone-800 transition"
-          >
-            <span>app-ads.txt</span>
-          </a>
+          <div class="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <a href="/app-ads.txt" class="text-amber-400 hover:underline font-semibold">
+              https://jonaspassarela.github.io/app-ads.txt
+            </a>
+            <a href="mailto:jonaspassarela@gmail.com" class="text-slate-300 hover:text-white">
+              Suporte: jonaspassarela@gmail.com
+            </a>
+          </div>
         </div>
-      </article>
 
-      <!-- Card para Futuros Apps -->
-      <article class="bg-stone-900/40 rounded-2xl p-5 border border-dashed border-stone-800 text-center space-y-1">
-        <p class="text-sm font-semibold text-stone-300">Novos Aplicativos em Desenvolvimento</p>
-        <p class="text-xs text-stone-400">Novos lançamentos no Google Play serão centralizados neste domínio.</p>
-      </article>
-    </section>
-
-    <!-- Transparência e Diretrizes IAB / AdMob -->
-    <section class="bg-stone-900/60 rounded-2xl p-6 border border-stone-800 space-y-3 text-xs text-stone-400">
-      <h3 class="font-bold text-stone-200 uppercase tracking-wider text-[11px]">
-        Conformidade com Anúncios (IAB Tech Lab & Google AdMob)
-      </h3>
-      <p>
-        Este domínio hospeda o arquivo canônico <code>/app-ads.txt</code> em conformidade com as diretrizes do IAB Tech Lab e as políticas de monetização do Google AdMob para proteção contra fraudes em inventário publicitário de aplicativos móveis.
-      </p>
-      <div class="flex items-center gap-2 text-stone-400 font-mono text-[11px] bg-stone-950 p-2.5 rounded-lg border border-stone-850">
-        <span>URL Canônica:</span>
-        <a href="/app-ads.txt" class="text-amber-400 underline font-semibold">https://jonaspassarela.github.io/app-ads.txt</a>
       </div>
     </section>
-
-    <!-- Rodapé -->
-    <footer class="pt-6 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-400 text-center sm:text-left">
-      <div>
-        <p>© 2026 Jonas Passarela. Todos os direitos reservados.</p>
-        <p class="text-[11px] text-stone-400">Google Play e o logotipo do Google Play são marcas registradas da Google LLC.</p>
-      </div>
-      <div>
-        <a href="mailto:jonaspassarela@gmail.com" class="text-amber-400 hover:underline">
-          jonaspassarela@gmail.com
-        </a>
-      </div>
-    </footer>
 
   </main>
+
+  <!-- Quiet Legal Footer -->
+  <footer class="border-t border-white/10 bg-[#070a11] py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-400">
+      <div class="space-y-1 text-center sm:text-left">
+        <p class="text-slate-200 font-semibold">© 2026 Jonas Passarela. Todos os direitos reservados.</p>
+        <p>Google Play e o logotipo do Google Play são marcas registradas da Google LLC.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-xs">
+        <a href="/privacy.html" class="hover:text-amber-400 transition-fast">/privacy.html</a>
+        <a href="/magic-deck-master/index.html" class="hover:text-amber-400 transition-fast">/magic-deck-master</a>
+        <a href="/app-ads.txt" class="hover:text-amber-400 transition-fast">/app-ads.txt</a>
+        <a href="mailto:jonaspassarela@gmail.com" class="text-amber-400 hover:underline">jonaspassarela@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightweight, Zero-Dependency Interactive Script (< 1ms execution) -->
+  <script>
+    // 1. Interactive Engine Preview Tabs
+    function switchPreviewTab(tab) {
+      var tabs = ['ocr', 'mana', 'sync'];
+      for (var i = 0; i < tabs.length; i++) {
+        var current = tabs[i];
+        var panel = document.getElementById('preview-panel-' + current);
+        var btn = document.getElementById('tab-btn-' + current);
+        if (current === tab) {
+          panel.classList.remove('hidden');
+          btn.setAttribute('aria-selected', 'true');
+          btn.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-amber-500 text-slate-950 transition-fast whitespace-nowrap shrink-0';
+        } else {
+          panel.classList.add('hidden');
+          btn.setAttribute('aria-selected', 'false');
+          btn.className = 'px-2.5 py-1 rounded-md text-xs font-mono font-medium text-slate-400 hover:text-white transition-fast whitespace-nowrap shrink-0';
+        }
+      }
+    }
+
+    // 2. Interactive Optical Card Recognition Sample Switcher
+    var cardSamples = {
+      bolt: {
+        name: 'Lightning Bolt',
+        type: 'Instant · Revisão Oracle Scryfall',
+        mana: '{R} · CMC 1',
+        brl: 'R$ 14,90',
+        usd: '$ 2.45',
+        latency: '84ms · 100% Local RAM'
+      },
+      solring: {
+        name: 'Sol Ring',
+        type: 'Artifact · Commander Staple',
+        mana: '{1} · CMC 1',
+        brl: 'R$ 9,50',
+        usd: '$ 1.65',
+        latency: '79ms · 100% Local RAM'
+      },
+      counterspell: {
+        name: 'Counterspell',
+        type: 'Instant · Modern & Commander',
+        mana: '{U}{U} · CMC 2',
+        brl: 'R$ 8,90',
+        usd: '$ 1.40',
+        latency: '91ms · 100% Local RAM'
+      }
+    };
+
+    function simulateCardScan(sampleKey) {
+      var data = cardSamples[sampleKey];
+      if (!data) return;
+      document.getElementById('scanned-card-name').textContent = data.name;
+      document.getElementById('scanned-card-type').textContent = data.type;
+      document.getElementById('scanned-card-mana').textContent = data.mana;
+      document.getElementById('scanned-card-brl').textContent = data.brl;
+      document.getElementById('scanned-card-usd').textContent = data.usd;
+      document.getElementById('ocr-latency-readout').textContent = data.latency;
+
+      var keys = ['bolt', 'solring', 'counterspell'];
+      for (var i = 0; i < keys.length; i++) {
+        var btn = document.getElementById('scan-sample-' + keys[i]);
+        if (keys[i] === sampleKey) {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40 transition-fast whitespace-nowrap truncate';
+        } else {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-slate-900 text-slate-300 border border-white/10 hover:border-white/25 transition-fast whitespace-nowrap truncate';
+        }
+      }
+    }
+
+    // 3. Portfolio App Filter
+    function filterApps(category) {
+      var cards = document.querySelectorAll('[data-app-category]');
+      for (var i = 0; i < cards.length; i++) {
+        var cardCategory = cards[i].getAttribute('data-app-category');
+        if (category === 'all' || cardCategory === category) {
+          cards[i].classList.remove('hidden');
+        } else {
+          cards[i].classList.add('hidden');
+        }
+      }
+
+      var filters = ['all', 'published', 'roadmap'];
+      for (var j = 0; j < filters.length; j++) {
+        var btn = document.getElementById('filter-btn-' + filters[j]);
+        if (filters[j] === category) {
+          btn.className = 'px-3 py-1.5 rounded-md text-xs font-medium bg-amber-500 text-slate-950 transition-fast whitespace-nowrap shrink-0';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:text-white transition-fast whitespace-nowrap shrink-0';
+        }
+      }
+    }
+
+    // 4. Copy app-ads.txt Record
+    function copyAppAdsRecord() {
+      var record = 'google.com, pub-1926145067521120, DIRECT, f08c47fec0942fa0';
+      var btn = document.getElementById('copy-appads-btn');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(record).then(function() {
+          btn.textContent = 'Copiado!';
+          setTimeout(function() {
+            btn.textContent = 'Copiar linha';
+          }, 2000);
+        });
+      }
+    }
+  </script>
 </body>
 </html>

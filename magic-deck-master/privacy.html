@@ -1,234 +1,280 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Magic Deck Master</title>
   <meta name="description" content="Official Privacy Policy for Magic Deck Master (com.jpassarela.magicdeckmaster). Offline-first card management, on-device OCR camera scanner, and optional Google Drive backup.">
   <meta name="robots" content="index, follow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230f172a%22 stroke=%22%23f59e0b%22 stroke-width=%226%22/><text x=%2250%22 y=%2266%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2246%22 fill=%22%23f59e0b%22 text-anchor=%22middle%22>JP</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            mana: {
-              gold: '#d97706',
-              dark: '#1c1917',
-              surface: '#292524',
-              border: '#44403c',
-            }
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
     }
   </script>
   <style>
-    /* Custom scrollbar and fallback styling */
+    :root {
+      color-scheme: dark;
+    }
     body {
+      background-color: #0a0e17;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
+      letter-spacing: 0.01em;
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-header {
+      background: rgba(10, 14, 23, 0.84);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-subtle {
+      background: rgba(30, 41, 59, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
   </style>
 </head>
-<body class="bg-stone-50 text-stone-800 antialiased min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+<body class="bg-[#0a0e17] text-slate-200 antialiased min-h-screen selection:bg-amber-500 selection:text-slate-950">
 
-  <main class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+  <!-- Top Bar Contract -->
+  <header class="sticky top-0 z-40 h-16 glass-header">
+    <div class="max-w-5xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-8">
+      <a href="/" class="text-base sm:text-lg font-bold tracking-tight text-white whitespace-nowrap shrink-0">
+        ← Jonas Passarela Hub
+      </a>
+
+      <nav aria-label="Policy Sections" class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="#summary" class="hover:text-white whitespace-nowrap shrink-0">Overview</a>
+        <a href="#camera" class="hover:text-white whitespace-nowrap shrink-0">Camera OCR</a>
+        <a href="#googledrive" class="hover:text-white whitespace-nowrap shrink-0">Google Drive</a>
+        <a href="#advertising" class="hover:text-white whitespace-nowrap shrink-0">Zero Ads</a>
+        <a href="#deletion" class="hover:text-white whitespace-nowrap shrink-0">Data Deletion</a>
+      </nav>
+
+      <a
+        href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 transition whitespace-nowrap shrink-0"
+      >
+        Google Play
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto py-10 px-4 sm:px-6 lg:px-8 space-y-8">
     
     <!-- Top Header Banner -->
-    <header class="bg-gradient-to-r from-stone-900 via-stone-850 to-amber-950 text-white px-6 sm:px-10 py-8 border-b border-stone-200">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-          Google Play Compliance & Legal Policy
-        </span>
-        <span class="text-xs font-mono text-stone-400 bg-stone-800/80 px-2.5 py-1 rounded border border-stone-700">
-          Package: com.jpassarela.magicdeckmaster
-        </span>
+    <section class="glass-panel rounded-2xl p-6 sm:p-10 space-y-5">
+      <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-amber-400">
+        <span>Google Play Compliance &amp; Legal Policy</span>
+        <span class="text-slate-400">Package: com.jpassarela.magicdeckmaster</span>
       </div>
 
-      <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
-        Magic Deck Master — Privacy Policy
-      </h1>
-      <p class="text-sm sm:text-base text-stone-300 max-w-2xl">
-        Transparent, offline-first data protection standards. Your collection and personal data remain under your absolute control.
-      </p>
+      <div class="space-y-2">
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+          Magic Deck Master — Privacy Policy
+        </h1>
+        <p class="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+          Transparent, offline-first data protection standards. Your collection and personal data remain under your absolute control.
+        </p>
+      </div>
 
-      <div class="mt-6 pt-4 border-t border-stone-800 flex flex-wrap items-center justify-between gap-4 text-xs text-stone-400">
+      <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
         <div>
-          <span>Effective Date: <strong>October 2026</strong></span>
-          <span class="mx-2">•</span>
-          <span>Last Updated: <strong>October 12, 2026</strong></span>
+          <span>Effective Date: <strong class="text-slate-200">October 2026</strong></span>
+          <span class="mx-2">·</span>
+          <span>Last Updated: <strong class="text-slate-200">October 12, 2026</strong></span>
         </div>
         <div>
-          Developer: <span class="text-stone-200 font-medium">Jonas Passarela</span>
+          Developer: <span class="text-slate-200 font-medium">Jonas Passarela</span>
         </div>
       </div>
-    </header>
+    </section>
 
     <!-- Quick Navigation Bar -->
-    <nav aria-label="Table of Contents" class="bg-stone-100 border-b border-stone-200 px-6 sm:px-10 py-3 text-xs flex flex-wrap gap-x-4 gap-y-1.5 text-stone-600 font-medium">
-      <a href="#summary" class="hover:text-amber-700 transition">Overview</a>
-      <span class="text-stone-300">•</span>
-      <a href="#camera" class="hover:text-amber-700 transition">Camera (OCR)</a>
-      <span class="text-stone-300">•</span>
-      <a href="#googledrive" class="hover:text-amber-700 transition">Google Drive</a>
-      <span class="text-stone-300">•</span>
-      <a href="#storage" class="hover:text-amber-700 transition">Local Storage</a>
-      <span class="text-stone-300">•</span>
-      <a href="#thirdparty" class="hover:text-amber-700 transition">Third-Party APIs</a>
-      <span class="text-stone-300">•</span>
-      <a href="#advertising" class="hover:text-amber-700 transition">No Ads / No Tracking</a>
-      <span class="text-stone-300">•</span>
-      <a href="#disclaimer" class="hover:text-amber-700 transition">WotC Fan Policy</a>
-      <span class="text-stone-300">•</span>
-      <a href="#deletion" class="hover:text-amber-700 transition">Data Deletion & Contact</a>
+    <nav aria-label="Table of Contents" class="glass-subtle rounded-xl px-5 py-3.5 text-xs flex flex-wrap gap-x-4 gap-y-2 text-slate-300 font-mono">
+      <a href="#summary" class="hover:text-amber-400 transition">01. Overview</a>
+      <span class="text-slate-600">·</span>
+      <a href="#camera" class="hover:text-amber-400 transition">02. Camera (OCR)</a>
+      <span class="text-slate-600">·</span>
+      <a href="#googledrive" class="hover:text-amber-400 transition">03. Google Drive</a>
+      <span class="text-slate-600">·</span>
+      <a href="#storage" class="hover:text-amber-400 transition">04. Local Storage</a>
+      <span class="text-slate-600">·</span>
+      <a href="#thirdparty" class="hover:text-amber-400 transition">05. Third-Party APIs</a>
+      <span class="text-slate-600">·</span>
+      <a href="#advertising" class="hover:text-amber-400 transition">06. No Ads / No Tracking</a>
+      <span class="text-slate-600">·</span>
+      <a href="#disclaimer" class="hover:text-amber-400 transition">07. WotC Fan Policy</a>
+      <span class="text-slate-600">·</span>
+      <a href="#deletion" class="hover:text-amber-400 transition">08. Data Deletion &amp; Contact</a>
     </nav>
 
     <!-- Policy Content Body -->
-    <div class="px-6 sm:px-10 py-8 space-y-10 text-stone-700 leading-relaxed text-sm sm:text-base">
+    <div class="glass-panel rounded-2xl p-6 sm:p-10 space-y-10 text-slate-300 leading-relaxed text-sm sm:text-base">
 
       <!-- 1. Executive Summary -->
-      <section id="summary" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">1</span>
+      <section id="summary" class="scroll-mt-20 space-y-3">
+        <p class="text-xs font-mono text-amber-400">01. ARCHITECTURE OVERVIEW</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Executive Summary &amp; Local-First Architecture
         </h2>
-        <p class="mb-3">
-          <strong>Magic Deck Master</strong> (package ID: <code class="text-xs bg-stone-100 border border-stone-300 px-1.5 py-0.5 rounded text-stone-800 font-mono">com.jpassarela.magicdeckmaster</code>) is engineered with a strict <strong>local-first</strong> architecture. We believe that your Magic: The Gathering card collection, customized decks, wishlist, and usage habits are strictly personal.
+        <p>
+          <strong class="text-white">Magic Deck Master</strong> (package ID: <code class="text-xs bg-slate-900 border border-white/10 px-1.5 py-0.5 rounded text-amber-300 font-mono">com.jpassarela.magicdeckmaster</code>) is engineered with a strict <strong class="text-white">local-first</strong> architecture. We believe that your Magic: The Gathering card collection, customized decks, wishlist, and usage habits are strictly personal.
         </p>
-        <div class="bg-amber-50/60 border-l-4 border-amber-500 p-4 rounded-r-lg text-sm text-stone-800 space-y-1">
-          <p class="font-semibold text-amber-950">Core Commitments:</p>
-          <ul class="list-disc pl-5 space-y-1 text-stone-700">
-            <li><strong>No Account Required:</strong> You do not need to register, provide an email, or log in to use the core features of the app.</li>
-            <li><strong>No Analytics or Tracking SDKs:</strong> We do not track your clicks, sessions, geolocation, or hardware identifiers.</li>
-            <li><strong>Zero Cloud Databases:</strong> We do not operate proprietary user servers that hold your personal inventory.</li>
+        <div class="glass-subtle p-5 rounded-xl text-sm space-y-2">
+          <p class="font-semibold text-amber-400 font-mono text-xs">CORE COMMITMENTS</p>
+          <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
+            <li><strong class="text-white">No Account Required:</strong> You do not need to register, provide an email, or log in to use the core features of the app.</li>
+            <li><strong class="text-white">No Analytics or Tracking SDKs:</strong> We do not track your clicks, sessions, geolocation, or hardware identifiers.</li>
+            <li><strong class="text-white">Zero Cloud Databases:</strong> We do not operate proprietary user servers that hold your personal inventory.</li>
           </ul>
         </div>
       </section>
 
       <!-- 2. Camera Usage & OCR Scanner -->
-      <section id="camera" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">2</span>
+      <section id="camera" class="scroll-mt-20 space-y-3 pt-6 border-t border-white/10">
+        <p class="text-xs font-mono text-amber-400">02. HARDWARE PERMISSIONS</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Camera Permission (On-Device OCR Optical Card Scanner)
         </h2>
-        <p class="mb-3">
-          The app requests access to the device camera strictly when you tap the <strong>Card Scanner</strong> feature. This permission is governed by the following technical guarantees:
+        <p>
+          The app requests access to the device camera strictly when you tap the <strong class="text-white">Card Scanner</strong> feature. This permission is governed by the following technical guarantees:
         </p>
-        <div class="grid sm:grid-cols-2 gap-3 mb-3">
-          <div class="bg-stone-50 border border-stone-200 rounded-xl p-4">
-            <h3 class="font-semibold text-stone-900 text-sm mb-1 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+            <h3 class="font-semibold text-white text-sm">
               100% Offline / Local Processing (WASM)
             </h3>
-            <p class="text-xs text-stone-600">
+            <p class="text-xs text-slate-300 leading-relaxed">
               Optical Character Recognition (OCR) is executed locally on your device hardware using an in-app WebAssembly (WASM) engine (Tesseract.js). Frames are processed in volatile memory and never transmitted to any external server.
             </p>
           </div>
-          <div class="bg-stone-50 border border-stone-200 rounded-xl p-4">
-            <h3 class="font-semibold text-stone-900 text-sm mb-1 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+            <h3 class="font-semibold text-white text-sm">
               No Video or Photo Storage
             </h3>
-            <p class="text-xs text-stone-600">
+            <p class="text-xs text-slate-300 leading-relaxed">
               Camera video frames are immediately discarded from memory once the text is identified. The app does not save photos to your photo gallery, does not record audio or video, and does not perform any biometric or facial scanning.
             </p>
           </div>
         </div>
-        <p class="text-xs text-stone-500 italic">
+        <p class="text-xs font-mono text-slate-400">
           Camera permission can be enabled or disabled at any time in your Android System Settings &gt; Apps &gt; Magic Deck Master &gt; Permissions.
         </p>
       </section>
 
       <!-- 3. Google Drive API & OAuth 2.0 -->
-      <section id="googledrive" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">3</span>
+      <section id="googledrive" class="scroll-mt-20 space-y-3 pt-6 border-t border-white/10">
+        <p class="text-xs font-mono text-amber-400">03. CLOUD BACKUP &amp; OAUTH 2.0</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Google Drive API &amp; OAuth 2.0 User Data Compliance
         </h2>
-        <p class="mb-3">
+        <p>
           Magic Deck Master offers an optional, user-initiated cloud backup feature through the official Google Drive API.
         </p>
-        <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 mb-3 space-y-2">
-          <h3 class="font-semibold text-stone-900 text-sm">Restricted Scope: <code class="text-xs font-mono bg-stone-200 px-1 py-0.5 rounded text-amber-900">https://www.googleapis.com/auth/drive.file</code></h3>
-          <p class="text-xs text-stone-600">
-            We intentionally use the most restrictive Google Drive scope available: <code>drive.file</code>. This scope grants the app permission <strong>solely and exclusively</strong> to create, view, and modify files that were created by Magic Deck Master itself (e.g., your collection backup file named <code>magic-deck-master-backup.json</code>).
+        <div class="glass-subtle rounded-xl p-5 space-y-3">
+          <h3 class="font-semibold text-white text-sm">
+            Restricted Scope: <code class="text-xs font-mono bg-slate-950 px-2 py-0.5 rounded text-amber-400 border border-white/10">https://www.googleapis.com/auth/drive.file</code>
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            We intentionally use the most restrictive Google Drive scope available: <code class="font-mono text-slate-100">drive.file</code>. This scope grants the app permission <strong class="text-white">solely and exclusively</strong> to create, view, and modify files that were created by Magic Deck Master itself (e.g., your collection backup file named <code class="font-mono text-slate-100">magic-deck-master-backup.json</code>).
           </p>
-          <ul class="list-disc pl-5 text-xs text-stone-600 space-y-1">
-            <li>The app <strong>cannot</strong> read, browse, modify, or delete any other files or folders in your Google Drive account.</li>
+          <ul class="list-disc pl-5 text-xs text-slate-300 space-y-1.5">
+            <li>The app <strong class="text-white">cannot</strong> read, browse, modify, or delete any other files or folders in your Google Drive account.</li>
             <li>OAuth authentication tokens are held only in temporary client-side session memory and are never transmitted to or stored on third-party servers.</li>
-            <li>Our use and transfer of information received from Google APIs adhere strictly to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" class="text-amber-700 underline font-medium">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
+            <li>Our use and transfer of information received from Google APIs adhere strictly to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline font-medium">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
           </ul>
         </div>
-        <p class="text-xs text-stone-500">
-          You can revoke Magic Deck Master's access to your Google Drive at any time via your Google Account Security Dashboard at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" class="text-amber-700 underline">https://myaccount.google.com/permissions</a>.
+        <p class="text-xs text-slate-400">
+          You can revoke Magic Deck Master's access to your Google Drive at any time via your Google Account Security Dashboard at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline font-mono">https://myaccount.google.com/permissions</a>.
         </p>
       </section>
 
       <!-- 4. Local Data Storage -->
-      <section id="storage" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">4</span>
+      <section id="storage" class="scroll-mt-20 space-y-3 pt-6 border-t border-white/10">
+        <p class="text-xs font-mono text-amber-400">04. ON-DEVICE SANDBOX</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Local Device Storage (IndexedDB &amp; localStorage)
         </h2>
-        <p class="mb-2">
-          All your decks, inventory quantities, price watches, and personal tags are stored entirely within your device's local application storage sandbox (using standard browser / WebView <code>IndexedDB</code> and <code>localStorage</code> APIs).
+        <p>
+          All your decks, inventory quantities, price watches, and personal tags are stored entirely within your device's local application storage sandbox (using standard browser / WebView <code class="font-mono text-xs text-slate-200">IndexedDB</code> and <code class="font-mono text-xs text-slate-200">localStorage</code> APIs).
         </p>
-        <p class="text-xs text-stone-600">
+        <p class="text-xs text-slate-400">
           This data remains on your physical phone. Clearing the app storage or uninstalling the application via Android settings will permanently erase all local records unless you performed a manual export or backup.
         </p>
       </section>
 
       <!-- 5. Third-Party APIs & External Content -->
-      <section id="thirdparty" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">5</span>
+      <section id="thirdparty" class="scroll-mt-20 space-y-3 pt-6 border-t border-white/10">
+        <p class="text-xs font-mono text-amber-400">05. EXTERNAL CATALOG APIS</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Third-Party APIs &amp; Data Providers
         </h2>
-        <p class="mb-3">
+        <p>
           To provide real-time card search, rulings, printings, and Brazilian market price estimates, the app communicates directly with public third-party APIs via HTTPS:
         </p>
-        <ul class="list-disc pl-5 space-y-2 text-sm text-stone-700">
+        <ul class="list-disc pl-5 space-y-2 text-sm text-slate-300">
           <li>
-            <strong>Scryfall API (<a href="https://scryfall.com" target="_blank" rel="noopener noreferrer" class="text-amber-700 underline">scryfall.com</a>):</strong> Used to fetch public Magic: The Gathering card catalog data, Oracle texts, legalities, and card image assets. Queries are read-only and send no user PII.
+            <strong class="text-white">Scryfall API (<a href="https://scryfall.com" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline">scryfall.com</a>):</strong> Used to fetch public Magic: The Gathering card catalog data, Oracle texts, legalities, and card image assets. Queries are read-only and send no user PII.
           </li>
           <li>
-            <strong>LigaMagic (<a href="https://ligamagic.com.br" target="_blank" rel="noopener noreferrer" class="text-amber-700 underline">ligamagic.com.br</a>):</strong> Used for fetching Brazilian Real (BRL) market pricing benchmarks. Queries are anonymous and read-only.
+            <strong class="text-white">LigaMagic (<a href="https://ligamagic.com.br" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline">ligamagic.com.br</a>):</strong> Used for fetching Brazilian Real (BRL) market pricing benchmarks. Queries are anonymous and read-only.
           </li>
         </ul>
       </section>
 
       <!-- 6. Advertising & Tracking Policy -->
-      <section id="advertising" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">6</span>
+      <section id="advertising" class="scroll-mt-20 space-y-3 pt-6 border-t border-white/10">
+        <p class="text-xs font-mono text-amber-400">06. ZERO TRACKING GUARANTEE</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Advertising, Tracking &amp; Commercial Data Sales
         </h2>
-        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-emerald-950 space-y-1.5">
-          <p class="font-semibold text-sm flex items-center gap-2">
-            <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-            Zero Advertising Policy
+        <div class="glass-subtle rounded-xl p-5 space-y-2">
+          <p class="font-semibold text-sm text-emerald-400 font-mono">
+            ZERO ADVERTISING &amp; ZERO GAID COLLECTION POLICY
           </p>
-          <ul class="list-disc pl-5 text-xs text-emerald-900 space-y-1">
-            <li>Magic Deck Master <strong>does not</strong> display third-party advertisements or banners.</li>
-            <li>The app <strong>does not</strong> collect, access, or transmit the Google Advertising ID (GAID / AAID).</li>
-            <li>We <strong>do not sell, rent, monetize, or broker</strong> any user data to third parties, data aggregators, or marketing networks.</li>
+          <ul class="list-disc pl-5 text-xs text-slate-300 space-y-1.5">
+            <li>Magic Deck Master <strong class="text-white">does not</strong> display third-party advertisements or banners.</li>
+            <li>The app <strong class="text-white">does not</strong> collect, access, or transmit the Google Advertising ID (GAID / AAID).</li>
+            <li>We <strong class="text-white">do not sell, rent, monetize, or broker</strong> any user data to third parties, data aggregators, or marketing networks.</li>
           </ul>
         </div>
       </section>
 
       <!-- 7. Wizards of the Coast Fan Content Policy -->
-      <section id="disclaimer" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">7</span>
+      <section id="disclaimer" class="scroll-mt-20 space-y-3 pt-6 border-t border-white/10">
+        <p class="text-xs font-mono text-amber-400">07. INTELLECTUAL PROPERTY</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Wizards of the Coast Fan Content Policy Disclaimer
         </h2>
-        <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 text-xs text-stone-600 space-y-2">
+        <div class="glass-subtle rounded-xl p-5 text-xs text-slate-300 space-y-2 leading-relaxed">
           <p>
-            Magic Deck Master is unofficial Fan Content permitted under the <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" rel="noopener noreferrer" class="text-amber-700 underline font-semibold">Wizards of the Coast Fan Content Policy</a>. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.
+            Magic Deck Master is unofficial Fan Content permitted under the <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline font-semibold">Wizards of the Coast Fan Content Policy</a>. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.
           </p>
           <p>
             Magic: The Gathering, its expansion sets, symbols, mana icons, and card artworks are trademarks and copyright of Wizards of the Coast LLC, a subsidiary of Hasbro, Inc.
@@ -237,55 +283,54 @@
       </section>
 
       <!-- 8. User Rights, Data Deletion & Contact -->
-      <section id="deletion" class="scroll-mt-12">
-        <h2 class="text-lg sm:text-xl font-bold text-stone-900 flex items-center gap-2 mb-3">
-          <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold">8</span>
+      <section id="deletion" class="scroll-mt-20 space-y-4 pt-6 border-t border-white/10">
+        <p class="text-xs font-mono text-amber-400">08. AUTONOMY &amp; SUPPORT</p>
+        <h2 class="text-lg sm:text-xl font-bold text-white">
           Data Deletion Instructions &amp; Support Contact
         </h2>
-        <p class="mb-3">
+        <p>
           In accordance with Google Play User Data policies, users have full autonomy over the deletion of any data associated with Magic Deck Master:
         </p>
 
-        <div class="space-y-3 mb-6">
-          <div class="border border-stone-200 rounded-lg p-3 bg-stone-50">
-            <h4 class="font-semibold text-stone-900 text-xs mb-1">A. Local Device Data Deletion</h4>
-            <p class="text-xs text-stone-600">
-              Go to Android <strong>Settings &gt; Apps &gt; Magic Deck Master &gt; Storage &gt; Clear Storage / Clear Data</strong>, or simply uninstall the application. All local databases, cached card images, and preferences are purged immediately and permanently.
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+            <h4 class="font-semibold text-white text-xs font-mono">A. Local Device Data Deletion</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Go to Android <strong class="text-white">Settings &gt; Apps &gt; Magic Deck Master &gt; Storage &gt; Clear Storage / Clear Data</strong>, or simply uninstall the application. All local databases, cached card images, and preferences are purged immediately and permanently.
             </p>
           </div>
-          <div class="border border-stone-200 rounded-lg p-3 bg-stone-50">
-            <h4 class="font-semibold text-stone-900 text-xs mb-1">B. Cloud Backup Data Deletion</h4>
-            <p class="text-xs text-stone-600">
-              Open your Google Drive app or visit <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="text-amber-700 underline">drive.google.com</a>, locate the <code>magic-deck-master-backup.json</code> file, and delete it. You may also revoke the application permission in your Google Account settings.
+          <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+            <h4 class="font-semibold text-white text-xs font-mono">B. Cloud Backup Data Deletion</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Open your Google Drive app or visit <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline">drive.google.com</a>, locate the <code class="font-mono text-slate-100">magic-deck-master-backup.json</code> file, and delete it. You may also revoke the application permission in your Google Account settings.
             </p>
           </div>
-          <div class="border border-stone-200 rounded-lg p-3 bg-stone-50">
-            <h4 class="font-semibold text-stone-900 text-xs mb-1">C. Direct Privacy Inquiries &amp; Rights Requests</h4>
-            <p class="text-xs text-stone-600">
-              Because we do not store your data on remote servers, there is no remote account to delete. However, if you have any questions regarding your privacy rights, data handling, or compliance under GDPR/LGPD/CCPA, please contact the developer:
+          <div class="glass-subtle rounded-xl p-4 space-y-1.5">
+            <h4 class="font-semibold text-white text-xs font-mono">C. Direct Privacy Inquiries</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Because we do not store your data on remote servers, there is no remote account to delete. If you have questions regarding GDPR/LGPD/CCPA compliance, contact the developer below.
             </p>
           </div>
         </div>
 
-        <div class="bg-amber-50/80 border border-amber-300 rounded-xl p-5 text-stone-900">
-          <h3 class="font-bold text-base text-amber-950 mb-2 flex items-center gap-2">
-            <svg class="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <div class="glass-subtle rounded-xl p-6 space-y-2 border border-amber-500/30">
+          <h3 class="font-bold text-base text-white">
             Developer Contact Information
           </h3>
-          <p class="text-xs text-stone-700 mb-1">
-            <strong>Developer:</strong> Jonas Passarela
+          <p class="text-xs text-slate-300">
+            <strong class="text-white">Developer:</strong> Jonas Passarela
           </p>
-          <p class="text-xs text-stone-700 mb-1">
-            <strong>Application:</strong> Magic Deck Master (<span class="font-mono">com.jpassarela.magicdeckmaster</span>)
+          <p class="text-xs text-slate-300">
+            <strong class="text-white">Application:</strong> Magic Deck Master (<span class="font-mono text-amber-300">com.jpassarela.magicdeckmaster</span>)
           </p>
-          <p class="text-xs text-stone-700 mb-3">
-            <strong>Support &amp; Compliance Email:</strong>
-            <a href="mailto:jonaspassarela@gmail.com" class="text-amber-800 font-bold underline hover:text-amber-900 ml-1">
+          <p class="text-xs text-slate-300">
+            <strong class="text-white">Support &amp; Compliance Email:</strong>
+            <a href="mailto:jonaspassarela@gmail.com" class="text-amber-400 font-bold underline hover:text-amber-300 ml-1 font-mono">
               jonaspassarela@gmail.com
             </a>
           </p>
-          <p class="text-[11px] text-stone-600">
-            Response Time Commitment: All formal privacy and user rights inquiries are responded to within <strong>30 calendar days</strong>.
+          <p class="text-xs font-mono text-slate-400 pt-1">
+            Response Time Commitment: All formal privacy and user rights inquiries are responded to within <strong class="text-slate-200">30 calendar days</strong>.
           </p>
         </div>
       </section>
@@ -293,8 +338,13 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-stone-100 border-t border-stone-200 px-6 sm:px-10 py-5 text-center text-xs text-stone-500">
-      <p>© 2026 Magic Deck Master. Built with local-first privacy principles. All rights reserved.</p>
+    <footer class="pt-4 pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
+      <p>© 2026 Magic Deck Master · Jonas Passarela. Built with local-first privacy principles.</p>
+      <div class="flex items-center gap-4">
+        <a href="/" class="hover:text-amber-400">Developer Hub</a>
+        <a href="/privacy.html" class="hover:text-amber-400">/privacy.html</a>
+        <a href="/app-ads.txt" class="hover:text-amber-400">/app-ads.txt</a>
+      </div>
     </footer>
 
   </main>
