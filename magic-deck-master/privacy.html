@@ -1,701 +1,491 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Magic Deck Master</title>
-  <meta name="description" content="Official Privacy Policy for Magic Deck Master (com.jpassarela.magicdeckmaster). Offline-first card management, on-device OCR camera scanner, and optional Google Drive backup.">
+  <title>Política de Privacidade — Magic Deck Master</title>
+  <meta name="description" content="Política de Privacidade oficial do aplicativo Magic Deck Master (com.jpassarela.magicdeckmaster), desenvolvido por Jonas Passarela.">
   <meta name="robots" content="index, follow">
 
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Política de Privacidade — Magic Deck Master">
+  <meta property="og:description" content="Política de Privacidade oficial do aplicativo Magic Deck Master (com.jpassarela.magicdeckmaster), desenvolvido por Jonas Passarela.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonaspassarela.github.io/magic-deck-master/privacy.html">
 
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg:         #06060a;
-      --bg-surface: #0e0e14;
-      --bg-card:    #13131b;
-      --bg-hover:   #1a1a25;
-      --border:     #1e1e2a;
-      --border-h:   #2a2a3d;
-      --text:       #eeeef0;
-      --text-dim:   #8888a0;
-      --text-muted: #55556a;
-      --accent:     #34d399;
-      --accent-dim: #10b981;
-      --accent-glow: rgba(52, 211, 153, 0.15);
-      --radius:     16px;
-      --radius-sm:  10px;
-      --font:       'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --mono:       'JetBrains Mono', 'Fira Code', monospace;
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    html { scroll-behavior: smooth; }
+    :root[data-theme="dark"] {
+      --bg: #090a0f;
+      --bg-surface: #10121a;
+      --bg-card: #151824;
+      --bg-card-hover: #1b2030;
+      --border: #222738;
+      --border-hover: #333a52;
+      --text: #f1f3f9;
+      --text-dim: #949eb8;
+      --text-muted: #5e6884;
+      --accent: #10b981;
+      --accent-hover: #34d399;
+      --accent-glow: rgba(16, 185, 129, 0.16);
+      --accent-subtle: rgba(16, 185, 129, 0.08);
+      --header-bg: rgba(9, 10, 15, 0.82);
+    }
+
+    :root[data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-surface: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --border: #e2e8f0;
+      --border-hover: #cbd5e1;
+      --text: #0f172a;
+      --text-dim: #475569;
+      --text-muted: #94a3b8;
+      --accent: #059669;
+      --accent-hover: #10b981;
+      --accent-glow: rgba(5, 150, 105, 0.15);
+      --accent-subtle: rgba(5, 150, 105, 0.07);
+      --header-bg: rgba(248, 250, 252, 0.85);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: var(--font);
-      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
       color: var(--text);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
-      line-height: 1.7;
-      min-height: 100vh;
-      padding: 32px 16px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
     }
 
-    @media (min-width: 640px) {
-      body { padding: 48px 24px; }
+    ::selection {
+      background: var(--accent);
+      color: #ffffff;
     }
 
-    ::selection { background: var(--accent); color: var(--bg); }
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
 
-    a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-    a:hover { color: #6ee7b7; }
+    a:hover {
+      color: var(--accent-hover);
+    }
 
     .container {
-      max-width: 800px;
+      max-width: 860px;
       margin: 0 auto;
+      padding: 0 24px;
     }
 
-    /* ─── Header ─── */
-    .policy-header {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px 28px;
-      margin-bottom: 8px;
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 36px;
+      }
     }
 
-    @media (min-width: 640px) {
-      .policy-header { padding: 40px 40px; }
-    }
-
-    .header-top {
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-content {
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
+      width: 100%;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 100px;
-    }
-
-    .badge-accent {
-      color: var(--accent);
-      background: var(--accent-glow);
-      border: 1px solid rgba(52, 211, 153, 0.2);
-    }
-
-    .badge-muted {
-      color: var(--text-muted);
-      background: var(--bg-hover);
-      border: 1px solid var(--border);
-      font-family: var(--mono);
-      font-size: 11px;
-    }
-
-    .policy-header h1 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-
-    .policy-header > p {
+    .back-link {
       font-size: 14px;
-      color: var(--text-dim);
-      max-width: 560px;
-    }
-
-    .header-meta {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .header-meta strong { color: var(--text-dim); }
-
-    /* ─── Nav ─── */
-    .policy-nav {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 12px 20px;
-      margin-bottom: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 16px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .policy-nav a {
+      font-weight: 600;
       color: var(--text-dim);
       text-decoration: none;
-      padding: 4px 0;
       transition: color 0.2s;
     }
 
-    .policy-nav a:hover { color: var(--accent); }
+    .back-link:hover {
+      color: var(--accent);
+    }
 
-    .policy-nav .sep { color: var(--border); }
-
-    /* ─── Sections ─── */
-    .policy-body {
-      background: var(--bg-card);
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 28px;
-    }
-
-    @media (min-width: 640px) {
-      .policy-body { padding: 40px 40px; }
-    }
-
-    .policy-body section { margin-bottom: 48px; }
-    .policy-body section:last-child { margin-bottom: 0; }
-
-    .policy-body h2 {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 17px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 14px;
-      scroll-margin-top: 24px;
-    }
-
-    .section-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--accent-glow);
-      border: 1px solid rgba(52, 211, 153, 0.2);
+      background: var(--bg-card);
+      color: var(--text-dim);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      flex-shrink: 0;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    .policy-body p {
-      font-size: 14px;
+    .icon-btn:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .icon-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .page-header {
+      padding: 120px 0 36px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .package-id {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px;
+      color: var(--accent);
+      background: var(--accent-subtle);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .updated-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 680px;
+    }
+
+    .policy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .policy-card {
+        padding: 24px;
+      }
+    }
+
+    .policy-section {
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .policy-section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .policy-section p {
+      font-size: 15px;
       color: var(--text-dim);
       margin-bottom: 12px;
-      line-height: 1.75;
     }
 
-    .policy-body p:last-child { margin-bottom: 0; }
-
-    .policy-body strong { color: var(--text); }
-
-    code {
-      font-family: var(--mono);
-      font-size: 12px;
-      background: var(--bg-hover);
-      border: 1px solid var(--border);
-      padding: 1px 6px;
-      border-radius: 4px;
-      color: var(--accent);
-    }
-
-    /* Callout */
-    .callout {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 18px 20px;
-      margin: 16px 0;
-    }
-
-    .callout-accent {
-      background: var(--accent-glow);
-      border-color: rgba(52, 211, 153, 0.2);
-    }
-
-    .callout h3 {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .callout ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .callout li {
-      font-size: 13px;
-      color: var(--text-dim);
-      padding: 3px 0;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .callout li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 12px;
-    }
-
-    .callout li strong { color: var(--text); }
-
-    /* Cards Grid */
-    .info-grid {
-      display: grid;
-      gap: 12px;
-      margin: 16px 0;
-    }
-
-    @media (min-width: 640px) {
-      .info-grid-2 { grid-template-columns: 1fr 1fr; }
-    }
-
-    .info-card {
-      background: var(--bg-hover);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 16px 18px;
-    }
-
-    .info-card h3 {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .info-card h3 .check { color: var(--accent); }
-
-    .info-card p {
-      font-size: 12px;
-      color: var(--text-dim);
+    .policy-section p:last-child {
       margin-bottom: 0;
     }
 
-    /* Success Box */
-    .success-box {
-      background: rgba(16, 185, 129, 0.06);
-      border: 1px solid rgba(16, 185, 129, 0.15);
-      border-radius: var(--radius-sm);
-      padding: 18px 20px;
-      margin: 16px 0;
-    }
-
-    .success-box h3 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 10px;
+    .policy-section ul {
+      padding-left: 22px;
+      margin: 10px 0;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 8px;
     }
 
-    .success-box ul {
-      list-style: none;
-      padding: 0;
+    .policy-section li {
+      font-size: 15px;
+      color: var(--text-dim);
     }
 
-    .success-box li {
+    .policy-section strong {
+      color: var(--text);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 13px;
-      color: var(--text-dim);
-      padding: 3px 0;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .success-box li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .success-box li strong { color: var(--text); }
-
-    /* List */
-    .policy-body ul {
-      padding-left: 20px;
-      margin: 12px 0;
-    }
-
-    .policy-body li {
-      font-size: 14px;
-      color: var(--text-dim);
-      margin-bottom: 8px;
-      line-height: 1.7;
-    }
-
-    .policy-body li strong { color: var(--text); }
-
-    /* Deletion Steps */
-    .step-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: 16px 0;
-    }
-
-    .step-card {
-      background: var(--bg-hover);
+      background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 14px 18px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: var(--accent);
     }
 
-    .step-card h4 {
-      font-size: 12px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 4px;
+    .summary-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 12px;
     }
 
-    .step-card p {
-      font-size: 12px;
-      color: var(--text-dim);
+    .summary-box ul {
       margin: 0;
     }
 
-    /* Contact Box */
-    .contact-box {
-      background: var(--accent-glow);
-      border: 1px solid rgba(52, 211, 153, 0.2);
-      border-radius: var(--radius-sm);
-      padding: 24px;
-      margin-top: 24px;
+    .footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+      padding: 40px 0 32px;
+      margin-top: 48px;
     }
 
-    .contact-box h3 {
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .contact-box p {
-      font-size: 13px;
-      color: var(--text-dim);
-      margin-bottom: 6px;
-    }
-
-    .contact-box a { color: var(--accent); font-weight: 700; }
-
-    /* Disclaimer */
-    .disclaimer {
-      background: var(--bg-hover);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 16px 18px;
-      margin: 16px 0;
-    }
-
-    .disclaimer p {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .disclaimer p:last-child { margin-bottom: 0; }
-
-    /* Footer */
-    .policy-footer {
-      margin-top: 8px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 20px 28px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .policy-footer a { color: var(--accent); text-decoration: none; }
-    .policy-footer a:hover { text-decoration: underline; }
-
-    /* Back link */
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-dim);
-      text-decoration: none;
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
       margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .footer-links a {
+      color: var(--text);
+      font-weight: 500;
+      text-decoration: none;
       transition: color 0.2s;
     }
 
-    .back-link:hover { color: var(--accent); }
+    .footer-links a:hover {
+      color: var(--accent);
+    }
 
-    /* Note/Italic */
-    .note {
-      font-size: 12px;
+    .footer-notices {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12.5px;
       color: var(--text-muted);
-      font-style: italic;
+      line-height: 1.6;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <header class="header">
+    <div class="container header-content">
+      <a href="/" class="back-link">← Jonas Passarela</a>
+      <button class="icon-btn" id="themeToggle" title="Alternar tema" aria-label="Alternar tema">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
+    </div>
+  </header>
 
-    <a href="/" class="back-link">← Back to jonaspassarela.github.io</a>
+  <main class="container">
 
-    <!-- Header -->
-    <header class="policy-header">
-      <div class="header-top">
-        <span class="badge badge-accent">
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          Google Play Compliance
-        </span>
-        <span class="badge badge-muted">com.jpassarela.magicdeckmaster</span>
+    <section class="page-header">
+      <div class="badge-row">
+        <span class="package-id">com.jpassarela.magicdeckmaster</span>
+        <span class="updated-date">Última atualização: 12 de outubro de 2026</span>
       </div>
-
-      <h1>Magic Deck Master — Privacy Policy</h1>
-      <p>Transparent, offline-first data protection standards. Your collection and personal data remain under your absolute control.</p>
-
-      <div class="header-meta">
-        <div>
-          <span>Effective: <strong>October 2026</strong></span>
-          <span style="margin: 0 8px; color: var(--border);">•</span>
-          <span>Updated: <strong>October 12, 2026</strong></span>
-        </div>
-        <div>Developer: <strong style="color: var(--text);">Jonas Passarela</strong></div>
-      </div>
+      <h1>Política de Privacidade — Magic Deck Master</h1>
+      <p>
+        Esta Política de Privacidade explica de forma direta como o aplicativo <strong>Magic Deck Master</strong>, desenvolvido por <strong>Jonas Passarela</strong>, lida com informações e permissões no seu aparelho Android.
+      </p>
     </section>
 
-    <!-- Navigation -->
-    <nav class="policy-nav" aria-label="Table of Contents">
-      <a href="#summary">Overview</a>
-      <span class="sep">•</span>
-      <a href="#camera">Camera (OCR)</a>
-      <span class="sep">•</span>
-      <a href="#googledrive">Google Drive</a>
-      <span class="sep">•</span>
-      <a href="#storage">Local Storage</a>
-      <span class="sep">•</span>
-      <a href="#thirdparty">Third-Party APIs</a>
-      <span class="sep">•</span>
-      <a href="#advertising">No Ads</a>
-      <span class="sep">•</span>
-      <a href="#disclaimer">WotC Policy</a>
-      <span class="sep">•</span>
-      <a href="#deletion">Data Deletion</a>
-    </nav>
+    <div class="policy-card">
 
-    <!-- Body -->
-    <div class="policy-body">
-
-      <!-- 1. Executive Summary -->
-      <section id="summary">
-        <h2>
-          <span class="section-num">1</span>
-          Executive Summary & Local-First Architecture
-        </h2>
+      <section class="policy-section" id="resumo">
+        <h2>1. Resumo geral</h2>
         <p>
-          <strong>Magic Deck Master</strong> (package ID: <code>com.jpassarela.magicdeckmaster</code>) is engineered with a strict <strong>local-first</strong> architecture. We believe that your Magic: The Gathering card collection, customized decks, wishlist, and usage habits are strictly personal.
+          O <strong>Magic Deck Master</strong> (pacote <code>com.jpassarela.magicdeckmaster</code>) foi projetado para funcionar diretamente no seu celular, sem exigir cadastro ou criação de conta.
         </p>
-        <div class="callout callout-accent">
-          <h3>Core Commitments</h3>
+        <div class="summary-box">
           <ul>
-            <li><strong>No Account Required:</strong> You do not need to register, provide an email, or log in to use the core features of the app.</li>
-            <li><strong>No Analytics or Tracking SDKs:</strong> We do not track your clicks, sessions, geolocation, or hardware identifiers.</li>
-            <li><strong>Zero Cloud Databases:</strong> We do not operate proprietary user servers that hold your personal inventory.</li>
+            <li><strong>Sem conta e sem cadastro:</strong> você não precisa informar nome, e-mail, senha ou telefone para usar o aplicativo.</li>
+            <li><strong>Coleção guardada no seu aparelho:</strong> seu inventário de cartas, decks, lista de desejos e histórico de partidas ficam salvos localmente no celular.</li>
+            <li><strong>Scanner local pela câmera:</strong> as imagens da câmera são processadas no próprio aparelho e não são salvas nem enviadas.</li>
+            <li><strong>Anúncios e opção PRO:</strong> a versão gratuita exibe anúncios do Google AdMob. A compra única opcional (PRO) remove os anúncios.</li>
           </ul>
         </div>
       </section>
 
-      <!-- 2. Camera Usage & OCR Scanner -->
-      <section id="camera">
-        <h2>
-          <span class="section-num">2</span>
-          Camera Permission (On-Device OCR Optical Card Scanner)
-        </h2>
+      <section class="policy-section" id="dados-locais">
+        <h2>2. Dados armazenados no seu aparelho e backup</h2>
         <p>
-          The app requests access to the device camera strictly when you tap the <strong>Card Scanner</strong> feature. This permission is governed by the following technical guarantees:
+          Todas as informações que você registra no aplicativo — incluindo sua coleção de cartas, quantidade, qualidade, idioma, decks montados, lista de desejos (wishlist) e configurações — ficam armazenadas exclusivamente no banco de dados local do próprio aparelho.
         </p>
-        <div class="info-grid info-grid-2">
-          <div class="info-card">
-            <h3><span class="check">✓</span> 100% Offline / Local Processing (WASM)</h3>
-            <p>
-              Optical Character Recognition (OCR) is executed locally on your device hardware using an in-app WebAssembly (WASM) engine (Tesseract.js). Frames are processed in volatile memory and never transmitted to any external server.
-            </p>
-          </div>
-          <div class="info-card">
-            <h3><span class="check">✓</span> No Video or Photo Storage</h3>
-            <p>
-              Camera video frames are immediately discarded from memory once the text is identified. The app does not save photos to your photo gallery, does not record audio or video, and does not perform any biometric or facial scanning.
-            </p>
-          </div>
-        </div>
-        <p class="note">
-          Camera permission can be enabled or disabled at any time in your Android System Settings > Apps > Magic Deck Master > Permissions.
+        <p>
+          Não mantemos servidores próprios para guardar sua coleção. Para fazer backup, o aplicativo permite exportar seus dados em um arquivo local para que você o guarde onde preferir (e importar esse arquivo quando quiser restaurar seus dados).
         </p>
       </section>
 
-      <!-- 3. Google Drive API & OAuth 2.0 -->
-      <section id="googledrive">
-        <h2>
-          <span class="section-num">3</span>
-          Google Drive API & OAuth 2.0 User Data Compliance
-        </h2>
+      <section class="policy-section" id="camera">
+        <h2>3. Permissão de câmera (Scanner de cartas)</h2>
         <p>
-          Magic Deck Master offers an optional, user-initiated cloud backup feature through the official Google Drive API.
-        </p>
-        <div class="info-card" style="margin: 16px 0;">
-          <h3>Restricted Scope: <code>drive.file</code></h3>
-          <p style="margin-top: 8px;">
-            We intentionally use the most restrictive Google Drive scope available. This scope grants the app permission <strong>solely and exclusively</strong> to create, view, and modify files that were created by Magic Deck Master itself (e.g., your collection backup file named <code>magic-deck-master-backup.json</code>).
-          </p>
-        </div>
-        <ul>
-          <li>The app <strong>cannot</strong> read, browse, modify, or delete any other files or folders in your Google Drive account.</li>
-          <li>OAuth authentication tokens are held only in temporary client-side session memory and are never transmitted to or stored on third-party servers.</li>
-          <li>Our use and transfer of information received from Google APIs adhere strictly to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
-        </ul>
-        <p class="note">
-          You can revoke Magic Deck Master's access at any time via your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">Google Account Security Dashboard</a>.
-        </p>
-      </section>
-
-      <!-- 4. Local Data Storage -->
-      <section id="storage">
-        <h2>
-          <span class="section-num">4</span>
-          Local Device Storage (IndexedDB & localStorage)
-        </h2>
-        <p>
-          All your decks, inventory quantities, price watches, and personal tags are stored entirely within your device's local application storage sandbox (using standard browser / WebView <code>IndexedDB</code> and <code>localStorage</code> APIs).
-        </p>
-        <p>
-          This data remains on your physical phone. Clearing the app storage or uninstalling the application via Android settings will permanently erase all local records unless you performed a manual export or backup.
-        </p>
-      </section>
-
-      <!-- 5. Third-Party APIs & External Content -->
-      <section id="thirdparty">
-        <h2>
-          <span class="section-num">5</span>
-          Third-Party APIs & Data Providers
-        </h2>
-        <p>
-          To provide real-time card search, rulings, printings, and Brazilian market price estimates, the app communicates directly with public third-party APIs via HTTPS:
+          O aplicativo solicita permissão de acesso à câmera somente quando você abre a ferramenta de <strong>Scanner de cartas</strong>.
         </p>
         <ul>
-          <li><strong>Scryfall API (<a href="https://scryfall.com" target="_blank" rel="noopener noreferrer">scryfall.com</a>):</strong> Used to fetch public Magic: The Gathering card catalog data, Oracle texts, legalities, and card image assets. Queries are read-only and send no user PII.</li>
-          <li><strong>LigaMagic (<a href="https://ligamagic.com.br" target="_blank" rel="noopener noreferrer">ligamagic.com.br</a>):</strong> Used for fetching Brazilian Real (BRL) market pricing benchmarks. Queries are anonymous and read-only.</li>
+          <li><strong>Processamento no aparelho:</strong> o reconhecimento do nome da carta (OCR via Google ML Kit) acontece diretamente no seu celular.</li>
+          <li><strong>Sem gravação ou envio:</strong> os quadros da câmera são analisados em memória temporária e descartados imediatamente. O aplicativo não tira fotos para a sua galeria, não grava vídeos e não envia imagens para nenhum servidor.</li>
+          <li><strong>Controle da permissão:</strong> você pode negar ou desativar o acesso à câmera a qualquer momento nas configurações do Android (<em>Configurações &gt; Aplicativos &gt; Magic Deck Master &gt; Permissões</em>) e continuar usando todas as demais funções do app normalmente.</li>
         </ul>
       </section>
 
-      <!-- 6. Advertising, Tracking & Commercial Data Sales -->
-      <section id="advertising">
-        <h2>
-          <span class="section-num">6</span>
-          Advertising, Tracking & Commercial Data Sales
-        </h2>
-        <div class="success-box">
-          <h3>✓ Zero Advertising Policy</h3>
-          <ul>
-            <li>Magic Deck Master <strong>does not</strong> display third-party advertisements or banners.</li>
-            <li>The app <strong>does not</strong> collect, access, or transmit the Google Advertising ID (GAID / AAID).</li>
-            <li>We <strong>do not sell, rent, monetize, or broker</strong> any user data to third parties, data aggregators, or marketing networks.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- 7. Wizards of the Coast Fan Content Policy -->
-      <section id="disclaimer">
-        <h2>
-          <span class="section-num">7</span>
-          Wizards of the Coast Fan Content Policy Disclaimer
-        </h2>
-        <div class="disclaimer">
-          <p>
-            Magic Deck Master is unofficial Fan Content permitted under the <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" rel="noopener noreferrer">Wizards of the Coast Fan Content Policy</a>. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.
-          </p>
-          <p>
-            Magic: The Gathering, its expansion sets, symbols, mana icons, and card artworks are trademarks and copyright of Wizards of the Coast LLC, a subsidiary of Hasbro, Inc.
-          </p>
-        </div>
-      </section>
-
-      <!-- 8. User Rights, Data Deletion & Contact -->
-      <section id="deletion">
-        <h2>
-          <span class="section-num">8</span>
-          Data Deletion Instructions & Support Contact
-        </h2>
+      <section class="policy-section" id="anuncios-compras">
+        <h2>4. Anúncios (Google AdMob) e compra PRO (Google Play Billing)</h2>
         <p>
-          In accordance with Google Play User Data policies, users have full autonomy over the deletion of any data associated with Magic Deck Master:
+          O Magic Deck Master é gratuito para baixar e usar, sustentado por anúncios na versão gratuita, com opção de compra única para removê-los:
         </p>
+        <ul>
+          <li><strong>Google AdMob (versão gratuita):</strong> a exibição de anúncios utiliza o SDK oficial do Google AdMob. Para exibir anúncios, limitar a frequência e combater fraudes, o Google pode coletar e processar o <strong>ID de publicidade do Android (Advertising ID / AAID)</strong>, informações básicas do dispositivo, dados de diagnóstico/desempenho e localização aproximada (baseada no endereço IP), respeitando as opções de consentimento e privacidade do seu aparelho. Você pode redefinir ou excluir seu ID de publicidade nas configurações do Android (<em>Configurações &gt; Google &gt; Anúncios</em>).</li>
+          <li><strong>Compra única PRO (Google Play Billing):</strong> caso você adquira a versão PRO para remover os anúncios, a transação é processada integralmente pelo sistema oficial de faturamento do Google Play. O desenvolvedor não tem acesso a números de cartão de crédito, dados bancários ou informações financeiras pessoais.</li>
+        </ul>
+      </section>
 
-        <div class="step-cards">
-          <div class="step-card">
-            <h4>A. Local Device Data Deletion</h4>
-            <p>Go to Android <strong>Settings > Apps > Magic Deck Master > Storage > Clear Storage / Clear Data</strong>, or simply uninstall the application. All local databases, cached card images, and preferences are purged immediately and permanently.</p>
-          </div>
-          <div class="step-card">
-            <h4>B. Cloud Backup Data Deletion</h4>
-            <p>Open your Google Drive app or visit <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer">drive.google.com</a>, locate the <code>magic-deck-master-backup.json</code> file, and delete it. You may also revoke the application permission in your Google Account settings.</p>
-          </div>
-          <div class="step-card">
-            <h4>C. Direct Privacy Inquiries & Rights Requests</h4>
-            <p>Because we do not store your data on remote servers, there is no remote account to delete. However, if you have any questions regarding your privacy rights, data handling, or compliance under GDPR/LGPD/CCPA, please contact the developer.</p>
-          </div>
-        </div>
+      <section class="policy-section" id="terceiros">
+        <h2>5. Serviços de terceiros</h2>
+        <p>
+          Para buscar informações atualizadas das cartas e oferecer recursos essenciais, o aplicativo se comunica diretamente via HTTPS com os seguintes serviços:
+        </p>
+        <ul>
+          <li><strong>Scryfall API (<a href="https://scryfall.com" target="_blank" rel="noopener noreferrer">scryfall.com</a>):</strong> usada para consultar o catálogo público de cartas de Magic: The Gathering, textos das cartas, regras, edições, imagens e preços de referência em dólar (USD). As buscas são feitas de forma direta e não enviam dados pessoais.</li>
+          <li><strong>LigaMagic (<a href="https://www.ligamagic.com.br" target="_blank" rel="noopener noreferrer">ligamagic.com.br</a>):</strong> o app calcula uma estimativa em reais (BRL) a partir do preço em dólar usando câmbio fixo (apenas como referência aproximada) e disponibiliza um botão que abre a página da carta na LigaMagic no navegador do seu aparelho para consulta do preço real nas lojas brasileiras.</li>
+          <li><strong>Serviços do Google (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade do Google</a>):</strong> usados para exibição de anúncios (AdMob), processamento da compra PRO (Google Play Billing), reconhecimento de texto no aparelho (ML Kit) e, quando necessário, tradução de textos de cartas para o português.</li>
+        </ul>
+      </section>
 
-        <div class="contact-box">
-          <h3>Developer Contact Information</h3>
-          <p><strong>Developer:</strong> Jonas Passarela</p>
-          <p><strong>Application:</strong> Magic Deck Master (<code>com.jpassarela.magicdeckmaster</code>)</p>
-          <p><strong>Support & Compliance Email:</strong> <a href="mailto:jonaspassarela@gmail.com">jonaspassarela@gmail.com</a></p>
-          <p class="note" style="margin-top: 12px;">Response Time Commitment: All formal privacy and user rights inquiries are responded to within <strong>30 calendar days</strong>.</p>
-        </div>
+      <section class="policy-section" id="exclusao-direitos">
+        <h2>6. Exclusão de dados e seus direitos (LGPD / GDPR)</h2>
+        <p>
+          Como o aplicativo não utiliza contas de usuário nem armazena sua coleção em servidores próprios, você tem controle total e imediato sobre seus dados:
+        </p>
+        <ul>
+          <li><strong>Apagar todos os dados do aplicativo:</strong> abra as configurações do seu Android em <em>Configurações &gt; Aplicativos &gt; Magic Deck Master &gt; Armazenamento &gt; Limpar armazenamento / Limpar dados</em>, ou simplesmente desinstale o aplicativo. Todos os decks, cartas, caches de imagem e preferências salvos no aparelho serão apagados permanentemente.</li>
+          <li><strong>Apagar arquivos de backup:</strong> caso você tenha exportado manualmente um arquivo de backup, basta apagar o arquivo na pasta onde o salvou no seu aparelho ou serviço de arquivos.</li>
+          <li><strong>Redefinir identificadores de anúncios:</strong> acesse <em>Configurações do Android &gt; Google &gt; Anúncios</em> para redefinir ou excluir o ID de publicidade do dispositivo.</li>
+          <li><strong>Seus direitos de privacidade:</strong> em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e legislações aplicáveis, você pode entrar em contato pelo e-mail abaixo para esclarecer dúvidas sobre esta política ou exercer seus direitos.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section" id="criancas">
+        <h2>7. Privacidade de crianças</h2>
+        <p>
+          O aplicativo não é direcionado a crianças menores de 13 anos e não coleta intencionalmente informações pessoais de crianças.
+        </p>
+      </section>
+
+      <section class="policy-section" id="aviso-legal">
+        <h2>8. Aviso de conteúdo de fã (Wizards of the Coast)</h2>
+        <p>
+          Magic Deck Master é conteúdo de fã não oficial, permitido pela <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" rel="noopener noreferrer">Wizards of the Coast Fan Content Policy</a>. Não é aprovado nem endossado pela Wizards. Parte dos materiais utilizados pertence à Wizards of the Coast. Magic: The Gathering, seus símbolos de mana, expansões e artes são marcas e direitos autorais da Wizards of the Coast LLC, subsidiária da Hasbro, Inc.
+        </p>
+      </section>
+
+      <section class="policy-section" id="contato">
+        <h2>9. Contato do desenvolvedor</h2>
+        <p>
+          Em caso de dúvidas sobre esta Política de Privacidade, suporte técnico ou solicitações relacionadas à proteção de dados:
+        </p>
+        <ul>
+          <li><strong>Desenvolvedor:</strong> Jonas Passarela</li>
+          <li><strong>Aplicativo:</strong> Magic Deck Master (<code>com.jpassarela.magicdeckmaster</code>)</li>
+          <li><strong>E-mail:</strong> <a href="mailto:jonaspassarela@gmail.com">jonaspassarela@gmail.com</a></li>
+          <li><strong>Prazo de resposta:</strong> solicitações de suporte e privacidade são respondidas em até <strong>30 dias corridos</strong>.</li>
+        </ul>
       </section>
 
     </div>
 
-    <!-- Footer -->
-    <footer class="policy-footer">
-      <p>© 2026 Magic Deck Master. Built with local-first privacy principles. All rights reserved.</p>
-      <p style="margin-top: 6px;"><a href="/">← jonaspassarela.github.io</a></p>
-    </footer>
+  </main>
 
-  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="/">← Jonas Passarela</a>
+        <a href="/magic-deck-master/index.html">Sobre o Magic Deck Master</a>
+        <a href="/app-ads.txt">app-ads.txt</a>
+        <a href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster" target="_blank" rel="noopener noreferrer">Google Play</a>
+      </div>
+
+      <div class="footer-notices">
+        <p>Magic Deck Master é conteúdo de fã não oficial, permitido pela Wizards of the Coast Fan Content Policy. Não é aprovado nem endossado pela Wizards. Magic: The Gathering, seus símbolos e artes são marcas e direitos da Wizards of the Coast LLC / Hasbro.</p>
+        <p>Google Play e o logotipo do Google Play são marcas registradas da Google LLC.</p>
+        <p>© 2026 Jonas Passarela.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const themeIcon = document.getElementById('themeIcon');
+
+    const sunIcon = `<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />`;
+    const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />`;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+    themeIcon.innerHTML = savedTheme === 'dark' ? sunIcon : moonIcon;
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = root.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeIcon.innerHTML = newTheme === 'dark' ? sunIcon : moonIcon;
+    });
+  </script>
 
 </body>
 </html>
