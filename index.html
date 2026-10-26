@@ -3,26 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jonas Passarela — Desenvolvedor Android Nativo</title>
-  <meta name="description" content="Portfólio de Jonas Passarela, Desenvolvedor Android Nativo e criador do Magic Deck Master. Apps de alta performance com arquitetura offline-first.">
+  <title>Jonas Passarela — Apps Android</title>
+  <meta name="description" content="Magic Deck Master: app gratuito para jogadores de Magic: The Gathering com coleção, montador de decks, scanner de cartas e contador de vida. Desenvolvido por Jonas Passarela.">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph / Meta Compartilhamento -->
-  <meta property="og:title" content="Jonas Passarela — Desenvolvedor Android Nativo">
-  <meta property="og:description" content="Desenvolvedor Android Nativo e criador do Magic Deck Master. Arquitetura offline-first, performance e privacidade.">
+  <meta property="og:title" content="Jonas Passarela — Apps Android">
+  <meta property="og:description" content="Magic Deck Master: app gratuito para jogadores de Magic: The Gathering com coleção, montador de decks, scanner de cartas e contador de vida. Desenvolvido por Jonas Passarela.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jonaspassarela.github.io/">
 
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-
-  <!-- Fontes Google -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-
   <style>
-    /* ════════════════ VARIÁVEIS DE TEMA & BASE ════════════════ */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
@@ -46,8 +36,6 @@
       --accent-subtle: rgba(16, 185, 129, 0.08);
       --indigo: #6366f1;
       --indigo-glow: rgba(99, 102, 241, 0.14);
-      --phone-body: #12141f;
-      --phone-border: #2c3248;
       --header-bg: rgba(9, 10, 15, 0.82);
     }
 
@@ -68,8 +56,6 @@
       --accent-subtle: rgba(5, 150, 105, 0.07);
       --indigo: #4f46e5;
       --indigo-glow: rgba(79, 70, 229, 0.12);
-      --phone-body: #1e293b;
-      --phone-border: #334155;
       --header-bg: rgba(248, 250, 252, 0.85);
     }
 
@@ -78,7 +64,7 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -99,7 +85,7 @@
     }
 
     .container {
-      max-width: 1140px;
+      max-width: 1040px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -110,7 +96,7 @@
       }
     }
 
-    /* ════════════════ CABEÇALHO FIXO (STICKY HEADER) ════════════════ */
+    /* Cabeçalho Fixo */
     .header {
       position: fixed;
       top: 0;
@@ -139,7 +125,6 @@
       width: 100%;
     }
 
-    /* Logo & Selo */
     .brand {
       display: flex;
       align-items: center;
@@ -161,12 +146,6 @@
       box-shadow: 0 4px 12px var(--accent-glow);
     }
 
-    .brand-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     .brand-name {
       font-weight: 700;
       font-size: 16px;
@@ -174,37 +153,6 @@
       color: var(--text);
     }
 
-    .badge-dev {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: var(--accent-subtle);
-      color: var(--accent);
-      border: 1px solid var(--accent-glow);
-    }
-
-    .badge-dev .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    @media (max-width: 480px) {
-      .badge-dev { display: none; }
-    }
-
-    /* Navegação */
     .nav {
       display: flex;
       align-items: center;
@@ -231,7 +179,6 @@
       background: var(--bg-surface);
     }
 
-    /* Ações de Header */
     .header-actions {
       display: flex;
       align-items: center;
@@ -298,10 +245,10 @@
       }
     }
 
-    /* ════════════════ SEÇÃO HERO ════════════════ */
+    /* Hero */
     .hero {
       position: relative;
-      padding: 140px 0 100px;
+      padding: 140px 0 80px;
       overflow: hidden;
     }
 
@@ -332,45 +279,24 @@
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 760px;
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 100px;
-      background: var(--accent-subtle);
-      border: 1px solid var(--accent-glow);
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 24px;
+      max-width: 720px;
     }
 
     .hero-title {
-      font-size: clamp(2.3rem, 5.2vw, 3.8rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
+      font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
       color: var(--text);
-      margin-bottom: 22px;
-    }
-
-    .hero-title .gradient-text {
-      background: linear-gradient(135deg, var(--accent) 10%, #38bdf8 50%, var(--indigo) 90%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 18px;
     }
 
     .hero-subtitle {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
       color: var(--text-dim);
       line-height: 1.65;
-      margin-bottom: 36px;
-      max-width: 660px;
+      margin-bottom: 32px;
+      max-width: 640px;
     }
 
     .hero-ctas {
@@ -380,15 +306,14 @@
       gap: 14px;
     }
 
-    /* Botões */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 13px 24px;
+      padding: 12px 22px;
       border-radius: 12px;
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 600;
       transition: all 0.22s ease;
       cursor: pointer;
@@ -407,174 +332,8 @@
       transform: translateY(-2px);
     }
 
-    .btn-github {
-      background: var(--bg-card);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-github:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn svg {
-      width: 19px;
-      height: 19px;
-      flex-shrink: 0;
-    }
-
-    /* ════════════════ SEÇÃO APP SHOWCASE ════════════════ */
-    .section {
-      padding: 90px 0;
-      position: relative;
-    }
-
-    .section-header {
-      margin-bottom: 48px;
-    }
-
-    .section-eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      color: var(--text);
-    }
-
-    .section-desc {
-      font-size: 15px;
-      color: var(--text-dim);
-      max-width: 580px;
-      margin-top: 8px;
-    }
-
-    /* Card Showcase com Mockup 3D */
-    .showcase-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 44px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 50px;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-      transition: border-color 0.3s;
-    }
-
-    .showcase-card:hover {
-      border-color: var(--border-hover);
-    }
-
-    @media (min-width: 900px) {
-      .showcase-card {
-        grid-template-columns: 1.15fr 0.85fr;
-        padding: 56px;
-      }
-    }
-
-    .app-details {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .app-header-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--accent);
-      background: var(--accent-subtle);
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--accent-glow);
-      align-self: flex-start;
-    }
-
-    .app-title-group h3 {
-      font-size: clamp(1.8rem, 3vw, 2.3rem);
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-
-    .app-tagline {
-      font-size: 15px;
-      color: var(--text-dim);
-      margin-top: 8px;
-      line-height: 1.6;
-    }
-
-    /* Destaques Técnicos (Bullets com Ícones) */
-    .app-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin: 8px 0;
-    }
-
-    .app-bullet {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .bullet-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .bullet-icon svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .bullet-content h4 {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
-    .bullet-content p {
-      font-size: 13px;
-      color: var(--text-dim);
-      line-height: 1.5;
-    }
-
-    .app-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      padding-top: 8px;
-    }
-
     .btn-secondary {
-      background: var(--bg-surface);
+      background: var(--bg-card);
       color: var(--text);
       border: 1px solid var(--border);
     }
@@ -582,474 +341,224 @@
     .btn-secondary:hover {
       background: var(--bg-card-hover);
       border-color: var(--border-hover);
+      transform: translateY(-2px);
     }
 
-    /* ─── Mockup 3D Interativo do Smartphone ─── */
-    .mockup-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1000px;
-      padding: 10px;
-    }
-
-    .mockup-phone {
-      width: 270px;
-      height: 540px;
-      background: var(--phone-body);
-      border-radius: 40px;
-      border: 3.5px solid var(--phone-border);
-      position: relative;
-      box-shadow:
-        0 25px 60px -15px rgba(0, 0, 0, 0.45),
-        0 0 40px var(--accent-glow),
-        inset 0 0 0 2px rgba(255, 255, 255, 0.08);
-      transform: rotateY(-8deg) rotateX(4deg);
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-      overflow: hidden;
-    }
-
-    .mockup-container:hover .mockup-phone {
-      transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-    }
-
-    .phone-notch {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 110px;
-      height: 22px;
-      background: #000000;
-      border-radius: 0 0 14px 14px;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .phone-speaker {
-      width: 40px;
-      height: 3px;
-      background: #2a2a2a;
-      border-radius: 2px;
-    }
-
-    .phone-screen {
-      position: absolute;
-      inset: 8px;
-      border-radius: 32px;
-      background: #0c0e17;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      padding: 24px 12px 14px;
-      color: #f1f3f9;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .screen-header {
-      text-align: center;
-      padding: 12px 0 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .screen-header .app-logo-text {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: #ffffff;
-    }
-
-    .screen-header .app-subtitle-text {
-      font-size: 9.5px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-top: 1px;
-    }
-
-    .screen-stats {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 6px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 8px;
-      margin: 8px 0;
-      font-size: 9px;
-      color: #949eb8;
-    }
-
-    .screen-stats span strong {
-      color: #ffffff;
-    }
-
-    .screen-card-list {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      overflow: hidden;
-    }
-
-    .screen-card-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 8px;
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .card-thumb {
-      width: 28px;
-      height: 36px;
-      border-radius: 4px;
+    .btn svg {
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
     }
 
-    .card-meta {
-      flex: 1;
-      overflow: hidden;
+    /* Seções */
+    .section {
+      padding: 64px 0;
+      position: relative;
     }
 
-    .card-name {
-      font-size: 10px;
-      font-weight: 700;
-      color: #ffffff;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    .card-sub {
-      font-size: 8px;
-      color: #7d88a5;
-    }
-
-    .card-price {
-      font-size: 9px;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .screen-action-btn {
-      margin-top: auto;
-      background: linear-gradient(135deg, var(--accent), #059669);
-      color: #ffffff;
-      text-align: center;
-      padding: 8px;
-      border-radius: 8px;
-      font-size: 10px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    /* ════════════════ SEÇÃO PROJETOS & STACK TÉCNICA ════════════════ */
-    .grid-projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-bottom: 50px;
-    }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      transition: all 0.25s ease;
-    }
-
-    .project-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-    }
-
-    .project-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11.5px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 100px;
-      align-self: flex-start;
-    }
-
-    .status-live {
-      background: var(--accent-subtle);
-      color: var(--accent);
-      border: 1px solid var(--accent-glow);
-    }
-
-    .status-wip {
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--indigo);
-      border: 1px solid var(--indigo-glow);
-    }
-
-    .project-title {
-      font-size: 18px;
-      font-weight: 700;
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
       color: var(--text);
+      margin-bottom: 24px;
     }
 
-    .project-desc {
-      font-size: 13.5px;
-      color: var(--text-dim);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .mini-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: var(--bg-surface);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-    }
-
-    /* Stack Badges */
-    .stack-shelf {
+    .card-box {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 32px;
+      padding: 36px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
     }
 
-    .shelf-title {
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .stack-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .stack-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 10px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      transition: all 0.2s;
-    }
-
-    .stack-chip:hover {
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-      transform: translateY(-1px);
-    }
-
-    .stack-chip svg {
-      width: 17px;
-      height: 17px;
-      flex-shrink: 0;
-    }
-
-    /* ════════════════ COMPLIANCE & ADS ════════════════ */
-    .compliance-box {
-      margin-top: 40px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-
-    .compliance-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    .compliance-header svg {
-      color: var(--accent);
-      width: 18px;
-      height: 18px;
-    }
-
-    .canonical-code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      display: inline-block;
-      word-break: break-all;
-    }
-
-    /* ════════════════ RODAPÉ INTEGRADO (FOOTER) ════════════════ */
-    .footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg-surface);
-      padding: 60px 0 36px;
-      margin-top: 60px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 48px;
-    }
-
-    @media (max-width: 768px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+    @media (max-width: 640px) {
+      .card-box {
+        padding: 24px;
       }
     }
 
-    .footer-brand p {
+    .app-name {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .app-description {
+      font-size: 15.5px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 720px;
+    }
+
+    .app-bullets {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    @media (min-width: 768px) {
+      .app-bullets {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .app-bullet {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .app-bullet h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .app-bullet p {
       font-size: 13.5px;
       color: var(--text-dim);
-      margin-top: 14px;
-      max-width: 380px;
       line-height: 1.6;
     }
 
-    .footer-col h4 {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text);
-      margin-bottom: 16px;
+    .features-line {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      color: var(--accent);
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
     }
 
-    .footer-col ul {
-      list-style: none;
+    .app-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Lista Privacidade */
+    .privacy-list {
+      list-style: disc;
+      padding-left: 22px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      color: var(--text-dim);
+      font-size: 15px;
     }
 
-    .footer-col a {
-      font-size: 13.5px;
+    .privacy-list a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Sobre */
+    .about-text {
+      font-size: 15.5px;
       color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      max-width: 700px;
+    }
+
+    .about-meta {
+      font-size: 14.5px;
+      color: var(--text-dim);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .about-meta a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Rodapé */
+    .footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+      padding: 48px 0 36px;
+      margin-top: 40px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .footer-links a {
+      color: var(--text);
+      font-weight: 500;
       transition: color 0.2s;
     }
 
-    .footer-col a:hover {
+    .footer-links a:hover {
       color: var(--accent);
     }
 
-    .footer-bottom {
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      font-size: 12px;
-      color: var(--text-muted);
+    .footer-links span {
+      color: var(--text-dim);
+      font-weight: 400;
     }
 
-    .footer-social-links {
+    .footer-notices {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
     }
-
-    /* ════════════════ ANIMAÇÕES REVEAL ════════════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
   </style>
 </head>
 
 <body>
 
-  <!-- ════════════════ 1. CABEÇALHO FIXO (STICKY HEADER) ════════════════ -->
+  <!-- Cabeçalho -->
   <header class="header" id="mainHeader">
     <div class="container header-content">
-      <a href="#inicio" class="brand" aria-label="Ir para o início">
+      <a href="#inicio" class="brand">
         <div class="brand-avatar">JP</div>
-        <div class="brand-meta">
-          <span class="brand-name">Jonas Passarela</span>
-          <span class="badge-dev">
-            <span class="dot"></span>
-            Android Developer
-          </span>
-        </div>
+        <span class="brand-name">Jonas Passarela</span>
       </a>
 
-      <!-- Navegação Limpa -->
       <nav class="nav">
         <div class="nav-links" id="navLinks">
-          <a href="#inicio" class="nav-link">Início</a>
-          <a href="#apps" class="nav-link">Aplicativos</a>
-          <a href="#projetos" class="nav-link">Projetos & Stack</a>
-          <a href="/privacy.html" class="nav-link">Privacidade</a>
+          <a href="#aplicativo" class="nav-link">Aplicativo</a>
+          <a href="#privacidade" class="nav-link">Privacidade</a>
+          <a href="#sobre" class="nav-link">Sobre</a>
           <a href="#contato" class="nav-link">Contato</a>
         </div>
 
         <div class="header-actions">
-          <!-- Botão para Trocar Tema (Dark / Light) -->
-          <button class="icon-btn" id="themeToggle" title="Alternar tema Dark/Light" aria-label="Alternar tema">
+          <button class="icon-btn" id="themeToggle" title="Alternar tema" aria-label="Alternar tema">
             <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           </button>
 
-          <!-- Link direto para o GitHub -->
-          <a href="https://github.com/JonasPassarela" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub de Jonas Passarela" aria-label="GitHub">
+          <a href="https://github.com/jonaspassarela" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
           </a>
 
-          <!-- Menu Mobile Toggle -->
           <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 6h16M4 12h16M4 18h16"/>
@@ -1062,313 +571,99 @@
 
   <main>
 
-    <!-- ════════════════ 2. SEÇÃO HERO ════════════════ -->
+    <!-- Hero -->
     <section class="hero" id="inicio">
       <div class="hero-glow-1"></div>
       <div class="hero-glow-2"></div>
       <div class="container">
-        <div class="hero-content reveal">
-          <div class="hero-pill">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-              <path d="M17.523 2.237L19.1.66a.446.446 0 00-.631-.631L16.848 1.65A9.18 9.18 0 0012.001 .5c-1.752 0-3.398.415-4.848 1.15L5.531.03a.446.446 0 00-.631.631l1.577 1.577A9.142 9.142 0 002.862 7.5h18.276a9.142 9.142 0 00-3.615-5.263zM7.5 5.5a1 1 0 110-2 1 1 0 010 2zm9 0a1 1 0 110-2 1 1 0 010 2zM3 8.5v9c0 .828.672 1.5 1.5 1.5H6v3.5a1.5 1.5 0 003 0V19h6v3.5a1.5 1.5 0 003 0V19h1.5c.828 0 1.5-.672 1.5-1.5v-9H3zm-3 1a1.5 1.5 0 013 0v6a1.5 1.5 0 01-3 0v-6zm22.5-1.5a1.5 1.5 0 00-1.5 1.5v6a1.5 1.5 0 003 0v-6a1.5 1.5 0 00-1.5-1.5z"/>
-            </svg>
-            Desenvolvedor Android Verificado no Google Play
-          </div>
-
-          <h1 class="hero-title">
-            Desenvolvedor Android Nativo &amp; Criador do <span class="gradient-text">Magic Deck Master</span>
-          </h1>
-
+        <div class="hero-content">
+          <h1 class="hero-title">Aplicativos Android feitos por Jonas Passarela</h1>
           <p class="hero-subtitle">
-            Especializado em aplicativos de alta performance com arquitetura offline-first, processamento on-device e foco rigoroso na experiência do usuário.
+            Desenvolvedor independente no Brasil. Meu app atual é o Magic Deck Master, para jogadores de Magic: The Gathering.
           </p>
-
           <div class="hero-ctas">
             <a href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster" target="_blank" rel="noopener noreferrer" class="btn btn-play">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3.609 1.814L13.793 12 3.61 22.186c-.347-.384-.555-.91-.555-1.536V3.35c0-.626.208-1.152.554-1.536zm11.391 11.393l2.259 2.259-11.75 6.786 9.491-9.045zm0-2.414L5.509 1.748l11.75 6.786-2.259 2.259zm1.207 1.207l3.879 2.24c.731.423.731 1.111 0 1.534l-3.879 2.24-2.121-2.121 2.121-2.093z"/>
               </svg>
-              Ver Apps no Google Play
+              Ver na Google Play
             </a>
-
-            <a href="https://github.com/JonasPassarela" target="_blank" rel="noopener noreferrer" class="btn btn-github">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-              Repositórios no GitHub
-            </a>
+            <a href="/privacy.html" class="btn btn-secondary">Política de privacidade</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════ 3. SHOWCASE DO APP PRINCIPAL ════════════════ -->
-    <section class="section" id="apps">
+    <!-- Seção Aplicativo -->
+    <section class="section" id="aplicativo">
       <div class="container">
-        <div class="section-header reveal">
-          <div class="section-eyebrow">Aplicativo em Destaque</div>
-          <h2 class="section-title">Magic Deck Master</h2>
-          <p class="section-desc">Gerenciador de cartas e baralhos para MTG construído com foco absoluto em velocidade, privacidade e usabilidade.</p>
-        </div>
-
-        <div class="showcase-card reveal">
-          <!-- Detalhes e Bullets Técnicos -->
-          <div class="app-details">
-            <span class="app-header-badge">com.jpassarela.magicdeckmaster</span>
-            
-            <div class="app-title-group">
-              <h3>Controle total sobre o seu acervo de cartas</h3>
-              <p class="app-tagline">
-                Projetado com arquitetura local-first: todos os dados pertencem unicamente ao dispositivo do jogador, garantindo agilidade imediata e privacidade garantida.
-              </p>
-            </div>
-
-            <!-- Bullets Técnicos com Ícones -->
-            <div class="app-bullets">
-              <div class="app-bullet">
-                <div class="bullet-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                    <circle cx="12" cy="13" r="4"/>
-                  </svg>
-                </div>
-                <div class="bullet-content">
-                  <h4>Escâner OCR Offline</h4>
-                  <p>Processamento óptico local via WebAssembly (WASM). Nenhum frame de câmera ou foto é enviado a servidores externos.</p>
-                </div>
-              </div>
-
-              <div class="app-bullet">
-                <div class="bullet-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                  </svg>
-                </div>
-                <div class="bullet-content">
-                  <h4>Sincronização &amp; Backup</h4>
-                  <p>Integração oficial e segura com Google Drive sob o escopo restrito <code>drive.file</code>, protegendo arquivos pessoais.</p>
-                </div>
-              </div>
-
-              <div class="app-bullet">
-                <div class="bullet-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 20V10M12 20V4M6 20v-6"/>
-                  </svg>
-                </div>
-                <div class="bullet-content">
-                  <h4>Gestão de Coleções MTG</h4>
-                  <p>Análise de curva de mana, inventário detalhado, exportação de baralhos e cotações de mercado em tempo real.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Botões de Ação do App -->
-            <div class="app-cta-row">
-              <a href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster" target="_blank" rel="noopener noreferrer" class="btn btn-play">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3.609 1.814L13.793 12 3.61 22.186c-.347-.384-.555-.91-.555-1.536V3.35c0-.626.208-1.152.554-1.536zm11.391 11.393l2.259 2.259-11.75 6.786 9.491-9.045zm0-2.414L5.509 1.748l11.75 6.786-2.259 2.259zm1.207 1.207l3.879 2.24c.731.423.731 1.111 0 1.534l-3.879 2.24-2.121-2.121 2.121-2.093z"/>
-                </svg>
-                Instalar no Google Play
-              </a>
-
-              <a href="/magic-deck-master/" class="btn btn-secondary">
-                Ver Página do App →
-              </a>
-            </div>
-          </div>
-
-          <!-- Mockup Visual 3D do Smartphone -->
-          <div class="mockup-container">
-            <div class="mockup-phone" id="phoneMockup">
-              <div class="phone-notch">
-                <div class="phone-speaker"></div>
-              </div>
-              <div class="phone-screen">
-                <div class="screen-header">
-                  <div class="app-logo-text">MAGIC DECK MASTER</div>
-                  <div class="app-subtitle-text">Coleção &amp; Inventário</div>
-                </div>
-
-                <div class="screen-stats">
-                  <span>Decks: <strong>14</strong></span>
-                  <span>Total Cartas: <strong>1.420</strong></span>
-                  <span>Backup: <strong>Ativo</strong></span>
-                </div>
-
-                <div class="screen-card-list">
-                  <div class="screen-card-item">
-                    <div class="card-thumb" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6);"></div>
-                    <div class="card-meta">
-                      <div class="card-name">Counterspell</div>
-                      <div class="card-sub">Instant · UU (4x)</div>
-                    </div>
-                    <div class="card-price">R$ 8,50</div>
-                  </div>
-
-                  <div class="screen-card-item">
-                    <div class="card-thumb" style="background: linear-gradient(135deg, #7f1d1d, #ef4444);"></div>
-                    <div class="card-meta">
-                      <div class="card-name">Lightning Bolt</div>
-                      <div class="card-sub">Instant · R (4x)</div>
-                    </div>
-                    <div class="card-price">R$ 12,00</div>
-                  </div>
-
-                  <div class="screen-card-item">
-                    <div class="card-thumb" style="background: linear-gradient(135deg, #14532d, #22c55e);"></div>
-                    <div class="card-meta">
-                      <div class="card-name">Birds of Paradise</div>
-                      <div class="card-sub">Creature · G (2x)</div>
-                    </div>
-                    <div class="card-price">R$ 38,00</div>
-                  </div>
-
-                  <div class="screen-card-item">
-                    <div class="card-thumb" style="background: linear-gradient(135deg, #713f12, #eab308);"></div>
-                    <div class="card-meta">
-                      <div class="card-name">Swords to Plowshares</div>
-                      <div class="card-sub">Instant · W (3x)</div>
-                    </div>
-                    <div class="card-price">R$ 9,00</div>
-                  </div>
-
-                  <div class="screen-card-item">
-                    <div class="card-thumb" style="background: linear-gradient(135deg, #262626, #525252);"></div>
-                    <div class="card-meta">
-                      <div class="card-name">Dark Ritual</div>
-                      <div class="card-sub">Instant · B (4x)</div>
-                    </div>
-                    <div class="card-price">R$ 6,50</div>
-                  </div>
-                </div>
-
-                <div class="screen-action-btn">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
-                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                    <circle cx="12" cy="13" r="4"/>
-                  </svg>
-                  Escanear Carta com OCR
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════ 4. PROJETOS & STACK TÉCNICA ════════════════ -->
-    <section class="section" id="projetos">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-eyebrow">Ecossistema &amp; Engenharia</div>
-          <h2 class="section-title">Projetos &amp; Stack Técnica</h2>
-          <p class="section-desc">Padrões de engenharia e tecnologias de ponta utilizadas na criação de soluções nativas.</p>
-        </div>
-
-        <!-- Grid de Projetos -->
-        <div class="grid-projects">
-          <div class="project-card reveal delay-1">
-            <span class="project-status status-live">● Publicado &amp; Ativo</span>
-            <h3 class="project-title">Magic Deck Master</h3>
-            <p class="project-desc">
-              Gerenciador completo com OCR offline via WebAssembly, curva de mana, backup com Google Drive e total conformidade com a política de fãs da Wizards of the Coast.
-            </p>
-            <div class="project-tags">
-              <span class="mini-tag">Android</span>
-              <span class="mini-tag">WASM</span>
-              <span class="mini-tag">Google Drive API</span>
-              <span class="mini-tag">Offline-First</span>
-            </div>
-          </div>
-
-          <div class="project-card reveal delay-2">
-            <span class="project-status status-wip">⚡ Em Desenvolvimento</span>
-            <h3 class="project-title">Novos Aplicativos Android</h3>
-            <p class="project-desc">
-              Utilitários focados em produtividade móvel, performance assíncrona com Coroutines e componentes Jetpack Compose de última geração.
-            </p>
-            <div class="project-tags">
-              <span class="mini-tag">Kotlin</span>
-              <span class="mini-tag">Jetpack Compose</span>
-              <span class="mini-tag">Room DB</span>
-              <span class="mini-tag">Clean Arch</span>
-            </div>
-          </div>
-
-          <div class="project-card reveal delay-3">
-            <span class="project-status status-wip">🛠️ Ferramentas Open-Source</span>
-            <h3 class="project-title">Módulos &amp; Bibliotecas</h3>
-            <p class="project-desc">
-              Módulos auxiliares para processamento local de imagem, integração direta com APIs REST e rotinas de backup sanitizado para Android.
-            </p>
-            <div class="project-tags">
-              <span class="mini-tag">Open-Source</span>
-              <span class="mini-tag">Kotlin Multiplatform</span>
-              <span class="mini-tag">GitHub Actions</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tags da Stack Técnica -->
-        <div class="stack-shelf reveal">
-          <div class="shelf-title">Tecnologias &amp; Ferramentas Centrais</div>
-          <div class="stack-badges">
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="#7F52FF"><path d="M24 24H0V0h24L12 12z"/></svg>
-              Kotlin
-            </div>
-
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="#4285F4"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l7.12 3.56L12 11.3 4.88 7.74 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>
-              Jetpack Compose
-            </div>
-
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="#3DDC84"><path d="M17.523 2.237L19.1.66a.446.446 0 00-.631-.631L16.848 1.65A9.18 9.18 0 0012.001 .5c-1.752 0-3.398.415-4.848 1.15L5.531.03a.446.446 0 00-.631.631l1.577 1.577A9.142 9.142 0 002.862 7.5h18.276a9.142 9.142 0 00-3.615-5.263zM7.5 5.5a1 1 0 110-2 1 1 0 010 2zm9 0a1 1 0 110-2 1 1 0 010 2zM3 8.5v9c0 .828.672 1.5 1.5 1.5H6v3.5a1.5 1.5 0 003 0V19h6v3.5a1.5 1.5 0 003 0V19h1.5c.828 0 1.5-.672 1.5-1.5v-9H3zm-3 1a1.5 1.5 0 013 0v6a1.5 1.5 0 01-3 0v-6zm22.5-1.5a1.5 1.5 0 00-1.5 1.5v6a1.5 1.5 0 003 0v-6a1.5 1.5 0 00-1.5-1.5z"/></svg>
-              Android SDK
-            </div>
-
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="#654FF0"><path d="M14.745 0l-1.39 7.472h4.438L14.745 0zm-5.49 0L6.207 7.472h4.438L9.255 0zm8.234 9.086l-3.048 14.914h2.086L21.574 9.086h-4.085zm-5.49 0l-3.047 14.914H11.038L16.084 9.086h-4.085zm-5.49 0L2.426 24h2.085l5.047-14.914H6.509z"/></svg>
-              WebAssembly (WASM)
-            </div>
-
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15H9V9h2v8zm4 0h-2V9h2v8z"/></svg>
-              Room Database
-            </div>
-
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="#8B5CF6"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 013 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z"/></svg>
-              Kotlin Coroutines &amp; Flow
-            </div>
-
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="#34A853"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/></svg>
-              Google Drive API
-            </div>
-
-            <div class="stack-chip">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-              Git &amp; GitHub Actions
-            </div>
-          </div>
-        </div>
-
-        <!-- Validação de Anúncios & Compliance IAB Tech Lab -->
-        <div class="compliance-box reveal">
-          <div class="compliance-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            Conformidade &amp; Transparência com Anúncios (IAB Tech Lab &amp; Google AdMob)
-          </div>
-          <p>
-            Este domínio hospeda o arquivo canônico público <code>/app-ads.txt</code> para validação oficial de desenvolvedores e proteção contra fraudes em publicidade móvel:
+        <h2 class="section-title">Aplicativo</h2>
+        <div class="card-box">
+          <h3 class="app-name">Magic Deck Master</h3>
+          <p class="app-description">
+            Gerencie sua coleção, monte decks, escaneie cartas com a câmera e acompanhe a vida no jogo. Gratuito, com anúncios. Uma compra única opcional (PRO) remove os anúncios.
           </p>
-          <div>
-            <a href="/app-ads.txt" class="canonical-code">https://jonaspassarela.github.io/app-ads.txt</a>
+
+          <div class="app-bullets">
+            <div class="app-bullet">
+              <h4>1. Scanner de cartas</h4>
+              <p>Reconhece o nome da carta pela câmera, no próprio aparelho. As imagens não são salvas nem enviadas.</p>
+            </div>
+            <div class="app-bullet">
+              <h4>2. Preços de referência</h4>
+              <p>Preço em dólar da Scryfall e uma estimativa em reais, calculada com câmbio fixo (valor aproximado). Para ver o preço real nas lojas brasileiras, o app abre a LigaMagic.</p>
+            </div>
+            <div class="app-bullet">
+              <h4>3. Seus dados no seu aparelho</h4>
+              <p>Coleção, decks e lista de desejos ficam guardados no celular, sem criar conta. Para fazer backup, exporte um arquivo e guarde onde preferir.</p>
+            </div>
+          </div>
+
+          <div class="features-line">
+            Inventário · Lista de desejos · Montador de decks · Curva de mana · Contador de vida
+          </div>
+
+          <div class="app-cta-row">
+            <a href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster" target="_blank" rel="noopener noreferrer" class="btn btn-play">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.793 12 3.61 22.186c-.347-.384-.555-.91-.555-1.536V3.35c0-.626.208-1.152.554-1.536zm11.391 11.393l2.259 2.259-11.75 6.786 9.491-9.045zm0-2.414L5.509 1.748l11.75 6.786-2.259 2.259zm1.207 1.207l3.879 2.24c.731.423.731 1.111 0 1.534l-3.879 2.24-2.121-2.121 2.121-2.093z"/>
+              </svg>
+              Instalar pela Google Play
+            </a>
+            <a href="/magic-deck-master/index.html" class="btn btn-secondary">Sobre o app</a>
+            <a href="/privacy.html" class="btn btn-secondary">Política de privacidade</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Privacidade em resumo -->
+    <section class="section" id="privacidade">
+      <div class="container">
+        <h2 class="section-title">Privacidade em resumo</h2>
+        <div class="card-box">
+          <ul class="privacy-list">
+            <li>Sem conta e sem cadastro.</li>
+            <li>A câmera é usada só no scanner; as imagens não são salvas nem enviadas.</li>
+            <li>A versão gratuita mostra anúncios do Google AdMob, que podem usar o ID de publicidade do aparelho. A compra PRO remove os anúncios.</li>
+            <li>O app usa serviços de terceiros: Scryfall (dados e imagens de cartas) e Google (anúncios, compras e, quando necessário, tradução de textos de cartas).</li>
+            <li>Detalhes completos na <a href="/privacy.html">política de privacidade</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <h2 class="section-title">Jonas Passarela</h2>
+        <div class="card-box">
+          <p class="about-text">
+            Desenvolvedor independente no Brasil. Crio aplicativos Android práticos e transparentes sobre o que fazem com os seus dados.
+          </p>
+          <div class="about-meta">
+            <p>Contato: <a href="mailto:jonaspassarela@gmail.com">jonaspassarela@gmail.com</a>. Suporte e pedidos de privacidade respondidos em até 30 dias corridos.</p>
+            <p>GitHub: <a href="https://github.com/jonaspassarela" target="_blank" rel="noopener noreferrer">https://github.com/jonaspassarela</a></p>
           </div>
         </div>
       </div>
@@ -1376,84 +671,25 @@
 
   </main>
 
-  <!-- ════════════════ 5. RODAPÉ INTEGRADO (FOOTER & COMPLIANCE) ════════════════ -->
+  <!-- Seção Legal / Rodapé -->
   <footer class="footer" id="contato">
     <div class="container">
-      <div class="footer-grid">
-        <!-- Coluna Marca -->
-        <div class="footer-brand">
-          <a href="#inicio" class="brand">
-            <div class="brand-avatar">JP</div>
-            <span class="brand-name">Jonas Passarela</span>
-          </a>
-          <p>
-            Desenvolvimento de software Android nativo focado em excelência técnica, arquitetura offline-first e respeito integral à privacidade do usuário.
-          </p>
-        </div>
-
-        <!-- Coluna Legal & Compliance -->
-        <div class="footer-col">
-          <h4>Legal &amp; Compliance</h4>
-          <ul>
-            <li><a href="/privacy.html">Política de Privacidade</a></li>
-            <li><a href="/app-ads.txt">Verificação app-ads.txt</a></li>
-            <li><a href="/magic-deck-master/">Página Magic Deck Master</a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster" target="_blank" rel="noopener noreferrer">Ficha no Google Play</a></li>
-          </ul>
-        </div>
-
-        <!-- Coluna Contato & Redes -->
-        <div class="footer-col">
-          <h4>Contato &amp; Redes</h4>
-          <ul>
-            <li>
-              <a href="mailto:jonaspassarela@gmail.com" style="color: var(--accent); font-weight: 600;">
-                jonaspassarela@gmail.com
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/JonasPassarela" target="_blank" rel="noopener noreferrer">
-                GitHub (JonasPassarela)
-              </a>
-            </li>
-            <li>
-              <a href="https://linkedin.com/in/jonaspassarela" target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="footer-links">
+        <a href="/privacy.html">Política de privacidade</a>
+        <a href="/app-ads.txt">app-ads.txt <span>(arquivo de verificação do AdMob)</span></a>
+        <a href="/magic-deck-master/index.html">Magic Deck Master</a>
+        <a href="https://play.google.com/store/apps/details?id=com.jpassarela.magicdeckmaster" target="_blank" rel="noopener noreferrer">Google Play</a>
       </div>
 
-      <!-- Rodapé Inferior -->
-      <div class="footer-bottom">
-        <div>
-          <span>© 2026 Jonas Passarela. Todos os direitos reservados. Google Play e Android são marcas registradas da Google LLC.</span>
-        </div>
-        <div class="footer-social-links">
-          <a href="https://github.com/JonasPassarela" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-            </svg>
-          </a>
-          <a href="https://linkedin.com/in/jonaspassarela" target="_blank" rel="noopener noreferrer" class="icon-btn" title="LinkedIn" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v8.37h-2.8v-8.37M7.86 6.54a1.63 1.63 0 1 0 1.63 1.63 1.63 1.63 0 0 0-1.63-1.63z"/>
-            </svg>
-          </a>
-          <a href="mailto:jonaspassarela@gmail.com" class="icon-btn" title="Enviar E-mail" aria-label="E-mail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-          </a>
-        </div>
+      <div class="footer-notices">
+        <p>Magic Deck Master é conteúdo de fã não oficial, permitido pela Wizards of the Coast Fan Content Policy. Não é aprovado nem endossado pela Wizards. Magic: The Gathering, seus símbolos e artes são marcas e direitos da Wizards of the Coast LLC / Hasbro.</p>
+        <p>Google Play e o logotipo do Google Play são marcas registradas da Google LLC.</p>
+        <p>© 2026 Jonas Passarela.</p>
       </div>
     </div>
   </footer>
 
-  <!-- ════════════════ SCRIPTS DE INTERATIVIDADE ════════════════ -->
   <script>
-    // 1. Sticky Header Background no Scroll
     const header = document.getElementById('mainHeader');
     const updateHeader = () => {
       if (window.scrollY > 20) {
@@ -1465,20 +701,17 @@
     window.addEventListener('scroll', updateHeader, { passive: true });
     updateHeader();
 
-    // 2. Mobile Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     if (menuToggle && navLinks) {
       menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
       });
-      // Fecha ao clicar em um link
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => navLinks.classList.remove('active'));
       });
     }
 
-    // 3. Tema Dark / Light com persistência no LocalStorage
     const themeToggle = document.getElementById('themeToggle');
     const root = document.documentElement;
     const themeIcon = document.getElementById('themeIcon');
@@ -1486,7 +719,6 @@
     const sunIcon = `<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />`;
     const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />`;
 
-    // Carregar tema salvo ou preferência
     const savedTheme = localStorage.getItem('theme') || 'dark';
     root.setAttribute('data-theme', savedTheme);
     themeIcon.innerHTML = savedTheme === 'dark' ? sunIcon : moonIcon;
@@ -1498,33 +730,6 @@
       localStorage.setItem('theme', newTheme);
       themeIcon.innerHTML = newTheme === 'dark' ? sunIcon : moonIcon;
     });
-
-    // 4. Scroll Reveal com Intersection Observer
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => revealObserver.observe(el));
-
-    // 5. Mockup 3D Tilt Efeito Interativo no Mousemove
-    const phone = document.getElementById('phoneMockup');
-    if (phone && window.matchMedia('(hover: hover)').matches) {
-      const card = phone.closest('.showcase-card');
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        phone.style.transform = `rotateY(${x * 24}deg) rotateX(${-y * 24}deg) scale(1.02)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        phone.style.transform = 'rotateY(-8deg) rotateX(4deg)';
-      });
-    }
   </script>
 
 </body>
