@@ -10,6 +10,8 @@ const PORT = 3000;
 
 app.use(express.static(__dirname));
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Static server running on http://0.0.0.0:${PORT}`);
+const HOST = process.env.HOST || '127.0.0.1';
+
+app.listen(PORT, HOST, () => {
+  console.log(`Static server running on http://${HOST}:${PORT}`);
 });
