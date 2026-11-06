@@ -39,6 +39,7 @@ jobs:
             assets/site.js \
             magic-deck-master/index.html \
             magic-deck-master/privacy.html \
+            magic-deck-master/terms.html \
             _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
